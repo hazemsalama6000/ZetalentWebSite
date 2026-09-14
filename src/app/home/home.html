@@ -1,0 +1,189 @@
+<!-- Hero -->
+<section class="hero" id="top">
+  <div class="shell">
+    <div class="hero-top">
+      <div class="hero-copy">
+        <span class="eyebrow" appReveal>Regional HCIS Platform</span>
+        <h1 appReveal [revealDelay]="90">One system to manage your entire workforce.</h1>
+        <p class="lead" appReveal [revealDelay]="180">
+          zetalents is a regional Human Capital Information System built for the way you work —
+          from onboarding to succession, in one connected, cloud-based platform.
+        </p>
+        <div class="hero-actions" appReveal [revealDelay]="270">
+          <a class="btn btn-primary" routerLink="/contact">Request a Demo</a>
+          <a class="btn btn-ghost" routerLink="/" fragment="products">Explore the Platform</a>
+        </div>
+      </div>
+
+      <div class="hero-media" appReveal [revealDelay]="200">
+        <img src="images/hero-cover.jpg" alt="Diverse professionals across the region connected through the zetalents platform" width="1792" height="896" />
+      </div>
+    </div>
+
+    <div class="hero-stats">
+      @for (stat of heroStats; track stat.label; let i = $index) {
+        <div class="hero-stat" appReveal [revealDelay]="i * 90">
+          <span class="hero-stat-value" [appCountUp]="stat.value">{{ stat.value }}</span>
+          <span class="hero-stat-label">{{ stat.label }}</span>
+        </div>
+      }
+    </div>
+  </div>
+</section>
+
+<!-- Who We Are -->
+<section class="section who-we-are" id="who-we-are">
+  <div class="shell split">
+    <div class="split-copy" appReveal>
+      <span class="eyebrow">01 — Who We Are</span>
+      <h2>A regional HCIS specialist</h2>
+      <p>
+        <strong>zetalents</strong>, headquartered in Riyadh, Saudi Arabia, has been operating
+        since 2016, delivering comprehensive Human Capital Information Systems to clients
+        across Saudi Arabia, Egypt, and the wider MENA region.
+      </p>
+      <p>
+        <strong>zetalents HCIS</strong> is a comprehensive, cloud-based Human Capital
+        Management platform that streamlines HR processes end to end — applicant tracking,
+        benefit programs, workforce training and development, payroll, and evolving
+        governmental regulations, all built for both employee satisfaction and operational
+        efficiency.
+      </p>
+    </div>
+
+    <div class="stat-panel" appReveal [revealDelay]="120">
+      @for (stat of heroStats; track stat.label) {
+        <div class="stat-row">
+          <span class="stat-value">{{ stat.value }}</span>
+          <span class="stat-label">{{ stat.label }}</span>
+        </div>
+      }
+    </div>
+  </div>
+</section>
+
+<!-- Manage It All -->
+<section class="section manage" id="manage-it-all">
+  <div class="shell">
+    <div class="section-head" appReveal>
+      <span class="eyebrow">02 — Manage It All</span>
+      <h2>One system, total control</h2>
+      <p class="section-lead">
+        From individual employee records to company-wide analytics, zetalents delivers
+        complete HR management across every level — country, company, and currency.
+      </p>
+    </div>
+
+    <div class="audience-grid">
+      @for (card of audienceCards; track card.title; let i = $index) {
+        <div class="audience-card" [class.is-dark]="card.dark" appReveal [revealDelay]="(i % 3) * 100">
+          <span class="card-icon" [innerHTML]="icon(card.icon)"></span>
+          <h3>{{ card.title }}</h3>
+          <p>{{ card.description }}</p>
+        </div>
+      }
+    </div>
+  </div>
+</section>
+
+<!-- Why zetalents -->
+<section class="section why dark-section" id="why-zetalents">
+  <div class="shell">
+    <div class="section-head" appReveal>
+      <span class="eyebrow">03 — Why zetalents</span>
+      <h2>What sets us apart</h2>
+    </div>
+
+    <div class="feature-grid">
+      @for (card of featureCards; track card.title; let i = $index) {
+        <div class="feature-card" appReveal [revealDelay]="(i % 3) * 90">
+          <span class="card-icon">
+            <span [innerHTML]="icon(card.icon)"></span>
+          </span>
+          <h3>{{ card.title }}</h3>
+          <p>{{ card.description }}</p>
+        </div>
+      }
+    </div>
+  </div>
+</section>
+
+<!-- Products & Services -->
+<section class="section products" id="products">
+  <div class="shell">
+    <div class="section-head" appReveal>
+      <span class="eyebrow">04 — Products &amp; Services</span>
+      <h2>10 modules, one connected platform</h2>
+      <p class="section-lead">
+        Every module shares one employee record, so data entered once flows across the
+        platform. Select a module to see it in detail.
+      </p>
+    </div>
+
+    <div class="module-grid">
+      @for (mod of modules; track mod.slug; let i = $index) {
+        <a class="module-card" [routerLink]="['/modules', mod.slug]" appReveal [revealDelay]="(i % 5) * 70">
+          <span class="card-icon"><span [innerHTML]="icon(mod.icon)"></span></span>
+          <h3>{{ mod.navTitle }}</h3>
+          <span class="module-card-cta">
+            View details
+            <span class="module-card-arrow" [innerHTML]="icon('arrowRight')"></span>
+          </span>
+        </a>
+      }
+    </div>
+  </div>
+</section>
+
+<!-- Clients -->
+<section class="section clients" id="clients">
+  <div class="shell">
+    <div class="section-head" appReveal>
+      <span class="eyebrow">05 — Our Clients</span>
+      <h2>Organizations that trust zetalents</h2>
+      <p class="section-lead">Trusted by leading organizations across KSA and Egypt.</p>
+    </div>
+  </div>
+
+  <div class="marquee" aria-hidden="false">
+    <div class="marquee-track marquee-left">
+      @for (client of clientsRowOne; track client.name + 'a') {
+        <span class="client-chip"><img [src]="client.logo" [alt]="client.name" /></span>
+      }
+      @for (client of clientsRowOne; track client.name + 'b') {
+        <span class="client-chip"><img [src]="client.logo" [alt]="client.name" /></span>
+      }
+    </div>
+  </div>
+  <div class="marquee" aria-hidden="false">
+    <div class="marquee-track marquee-right">
+      @for (client of clientsRowTwo; track client.name + 'a') {
+        <span class="client-chip"><img [src]="client.logo" [alt]="client.name" /></span>
+      }
+      @for (client of clientsRowTwo; track client.name + 'b') {
+        <span class="client-chip"><img [src]="client.logo" [alt]="client.name" /></span>
+      }
+    </div>
+  </div>
+</section>
+
+<!-- Technical Support -->
+<section class="section support-section" id="support">
+  <div class="shell">
+    <div class="support-banner" appReveal>
+      <span class="support-watermark">zetalents</span>
+      <div class="support-icon" [innerHTML]="icon('headset')"></div>
+      <div class="support-copy">
+        <span class="eyebrow">06 — Technical Support</span>
+        <h2>Here when you need us</h2>
+        <p>
+          Our customer support organization includes highly trained professionals, all of
+          whom have the broad knowledge base required to resolve customer inquiries
+          accurately and quickly. Our support staff have expert understanding of all
+          zetalents HCIS applications, Microsoft technology, and operating systems.
+        </p>
+      </div>
+      <a class="btn btn-support" routerLink="/contact">Contact Us</a>
+    </div>
+  </div>
+</section>

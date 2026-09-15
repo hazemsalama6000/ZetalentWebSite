@@ -3,7 +3,7 @@
 <header class="site-header" [class.is-scrolled]="scrolled()">
   <div class="shell header-inner">
     <a routerLink="/" class="logo" (click)="closeMenu()">
-      <span class="logo-mark">ze</span><span class="logo-word">talents</span>
+      <img src="zeLogo2.png" alt="zetalents" class="logo-img" />
     </a>
 
     <nav class="nav-links" [class.is-open]="menuOpen()">
@@ -31,14 +31,15 @@
 
 <footer class="site-footer">
   <div class="shell footer-inner">
-    <a routerLink="/" class="logo">
-      <span class="logo-mark">ze</span><span class="logo-word">talents</span>
+    <a routerLink="/" class="logo logo-footer">
+      <img src="zeLogo2.png" alt="zetalents" class="logo-img" />
     </a>
     <nav class="footer-links">
       @for (link of navLinks; track link.label) {
         <a [routerLink]="['/']" [fragment]="link.fragment">{{ link.label }}</a>
       }
       <a routerLink="/contact">Contact</a>
+      <a routerLink="/privacy-policy">Privacy Policy</a>
     </nav>
     <p class="footer-copy">&copy; 2016–2026 zetalents. All rights reserved.</p>
   </div>

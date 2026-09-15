@@ -13,7 +13,7 @@
     </p>
 
     <div class="contact-body">
-      <form class="contact-form" appReveal [revealDelay]="200" (submit)="onSubmit($event, nameInput.value, emailInput.value, messageInput.value)">
+      <form class="contact-form" appReveal [revealDelay]="200" (submit)="onSubmit($event, nameInput.value, emailInput.value, phoneInput.value, messageInput.value)">
         <div class="field">
           <label for="name">Full name</label>
           <input id="name" #nameInput name="name" type="text" required placeholder="Jane Doe" />
@@ -22,6 +22,11 @@
         <div class="field">
           <label for="email">Email address</label>
           <input id="email" #emailInput name="email" type="email" required placeholder="jane@company.com" />
+        </div>
+
+        <div class="field">
+          <label for="phone">Mobile number</label>
+          <input id="phone" #phoneInput name="phone" type="tel" placeholder="+20 100 7513507" />
         </div>
 
         <div class="field">

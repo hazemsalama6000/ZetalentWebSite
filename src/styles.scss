@@ -128,18 +128,13 @@ a {
 
 .logo {
   display: inline-flex;
-  align-items: baseline;
-  font-size: 1.4rem;
-  font-weight: 800;
-  letter-spacing: -0.01em;
+  align-items: center;
 }
 
-.logo-mark {
-  color: var(--orange);
-}
-
-.logo-word {
-  color: var(--ink);
+.logo-img {
+  display: block;
+  height: 32px;
+  width: auto;
 }
 
 /* Icons are injected via [innerHTML] (raw SVG markup), so they never receive

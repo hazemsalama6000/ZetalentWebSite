@@ -113,10 +113,12 @@
   justify-content: space-between;
   gap: 24px;
   flex-wrap: wrap;
+}
 
-  .logo-word {
-    color: #fff;
-  }
+.logo-footer {
+  background: #fff;
+  padding: 6px 14px;
+  border-radius: 8px;
 }
 
 .footer-links {

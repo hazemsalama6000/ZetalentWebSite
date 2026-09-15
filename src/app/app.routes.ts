@@ -13,5 +13,10 @@ export const routes: Routes = [
     path: 'contact',
     loadComponent: () => import('./contact/contact').then((m) => m.Contact),
   },
+  {
+    path: 'privacy-policy',
+    loadComponent: () =>
+      import('./privacy-policy/privacy-policy').then((m) => m.PrivacyPolicy),
+  },
   { path: '**', redirectTo: '' },
 ];

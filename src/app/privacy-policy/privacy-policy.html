@@ -1,0 +1,78 @@
+<section class="privacy-page">
+  <div class="shell">
+    <a class="back-link" routerLink="/">
+      <span class="back-arrow" [innerHTML]="icon('arrowLeft')"></span>
+      Back to Home
+    </a>
+
+    <span class="eyebrow" appReveal>Privacy Policy</span>
+    <h1 appReveal [revealDelay]="70">Privacy Policy &ndash; Zetalents</h1>
+    <p class="updated" appReveal [revealDelay]="140">
+      <strong>Last updated:</strong> {{ lastUpdated }}
+    </p>
+
+    <p class="intro" appReveal [revealDelay]="200">
+      Zetalents (&ldquo;we&rdquo;, &ldquo;our&rdquo;, &ldquo;us&rdquo;) is committed to protecting your
+      personal data and respecting your privacy. This Privacy Policy explains how we collect, store,
+      use, and protect your information when you visit our website, use our services, or interact with
+      our team.
+    </p>
+    <p class="intro" appReveal [revealDelay]="240">
+      By using our website, you agree to the terms of this Privacy Policy.
+    </p>
+
+    <div class="policy-body">
+      @for (section of sections; track section.number; let i = $index) {
+        <article class="policy-section" appReveal [revealDelay]="260 + i * 40">
+          <h2>{{ section.number }}. {{ section.title }}</h2>
+
+          @for (p of section.intro; track p) {
+            <p [innerHTML]="linkify(p)"></p>
+          }
+
+          @if (section.items) {
+            <ul>
+              @for (item of section.items; track item.text) {
+                <li>
+                  @if (item.label) {
+                    <strong>{{ item.label }}</strong>
+                    <br />
+                  }
+                  {{ item.text }}
+                </li>
+              }
+            </ul>
+          }
+
+          @for (p of section.outro; track p) {
+            <p class="outro" [innerHTML]="linkify(p)"></p>
+          }
+        </article>
+      }
+
+      <article class="policy-section contact-section" appReveal [revealDelay]="700">
+        <h2>11. Contact Us</h2>
+        <p>If you have any questions about this Privacy Policy, please contact:</p>
+
+        <div class="contact-card">
+          <h3>Zetalents</h3>
+          <div class="contact-row">
+            <span class="contact-icon" [innerHTML]="icon('mail')"></span>
+            <a [href]="'mailto:' + contactEmail">{{ contactEmail }}</a>
+          </div>
+          <div class="contact-row">
+            <span class="contact-icon" [innerHTML]="icon('globe')"></span>
+            <a [href]="'https://' + websiteUrl" target="_blank" rel="noopener">{{ websiteUrl }}</a>
+          </div>
+        </div>
+
+        <a class="dpo-link" [href]="'mailto:' + contactEmail">Contact Data Protection Team</a>
+
+        <p class="footnote">
+          This Privacy Policy applies to visitors to our website and users of our services. For
+          country-specific or product-specific privacy information, please contact our team.
+        </p>
+      </article>
+    </div>
+  </div>
+</section>

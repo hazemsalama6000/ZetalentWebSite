@@ -48,6 +48,7 @@
 .detail-body {
   display: grid;
   grid-template-columns: 300px 1fr;
+  align-items: start;
   gap: 32px;
   margin-top: 44px;
 }
@@ -61,7 +62,7 @@
   align-items: center;
   text-align: center;
   gap: 22px;
-  min-height: 320px;
+  height: 320px;
 }
 
 .detail-icon {
@@ -231,7 +232,7 @@
     flex-direction: row;
     justify-content: flex-start;
     text-align: left;
-    min-height: auto;
+    height: auto;
     gap: 18px;
   }
 

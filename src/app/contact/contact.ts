@@ -38,10 +38,11 @@ export class Contact {
     return this.sanitizer.bypassSecurityTrustHtml(iconMarkup(name));
   }
 
-  protected onSubmit(event: Event, name: string, email: string, message: string): void {
+  protected onSubmit(event: Event, name: string, email: string, phone: string, message: string): void {
     event.preventDefault();
     const subject = encodeURIComponent(`Website inquiry from ${name || 'a visitor'}`);
-    const body = encodeURIComponent(`${message}\n\n— ${name}${email ? ` (${email})` : ''}`);
+    const contactLine = [name, email, phone].filter(Boolean).join(' — ');
+    const body = encodeURIComponent(`${message}\n\n${contactLine}`);
     window.location.href = `mailto:${this.contactEmail}?subject=${subject}&body=${body}`;
   }
 }

@@ -26,6 +26,8 @@ export const ICON_PATHS: Record<string, string> = {
   phone: '<path d="M22 16.92v2.5a2 2 0 0 1-2.18 2 19.6 19.6 0 0 1-8.54-3.04 19.3 19.3 0 0 1-5.93-5.93A19.6 19.6 0 0 1 2.31 4.4 2 2 0 0 1 4.3 2.2h2.5a2 2 0 0 1 2 1.72c.13.95.36 1.88.69 2.76a2 2 0 0 1-.45 2.11L8.1 9.83a15.7 15.7 0 0 0 6.07 6.07l1.04-1.04a2 2 0 0 1 2.11-.45c.88.33 1.81.56 2.76.69a2 2 0 0 1 1.72 2.03z"/>',
   mail: '<rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 6-10 7L2 6"/>',
   send: '<path d="M22 2 11 13"/><path d="m22 2-7 20-4-9-9-4 20-7z"/>',
+  chevronRight: '<path d="m9 18 6-6-6-6"/>',
+  arrowUpRight: '<path d="M7 17 17 7"/><path d="M7 7h10v10"/>',
 };
 
 export function iconMarkup(name: string): string {

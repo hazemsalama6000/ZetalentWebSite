@@ -1,32 +1,31 @@
 <section class="contact-page">
   <div class="shell">
-    <a class="back-link" routerLink="/">
-      <span class="back-arrow" [innerHTML]="icon('arrowLeft')"></span>
-      Back to Home
-    </a>
-
-    <span class="eyebrow" appReveal>Contact</span>
-    <h1 appReveal [revealDelay]="70">We Are Here To Help!</h1>
-    <p class="tagline" appReveal [revealDelay]="140">
-      If you need any assistance, please reach out directly or complete the form below and
-      we'll be in touch as soon as possible.
-    </p>
+    <app-page-header eyebrow="Contact" heading="We are here to help!">
+      <p class="tagline" appReveal [revealDelay]="140">
+        If you need any assistance, please reach out directly or complete the form below and
+        we'll be in touch as soon as possible.
+      </p>
+    </app-page-header>
 
     <div class="contact-body">
       <form class="contact-form" appReveal [revealDelay]="200" (submit)="onSubmit($event, nameInput.value, emailInput.value, phoneInput.value, messageInput.value)">
+        <span class="form-label">Send a message</span>
+
         <div class="field">
           <label for="name">Full name</label>
           <input id="name" #nameInput name="name" type="text" required placeholder="Jane Doe" />
         </div>
 
-        <div class="field">
-          <label for="email">Email address</label>
-          <input id="email" #emailInput name="email" type="email" required placeholder="jane@company.com" />
-        </div>
+        <div class="field-row">
+          <div class="field">
+            <label for="email">Email address</label>
+            <input id="email" #emailInput name="email" type="email" required placeholder="jane@company.com" />
+          </div>
 
-        <div class="field">
-          <label for="phone">Mobile number</label>
-          <input id="phone" #phoneInput name="phone" type="tel" placeholder="+20 100 7513507" />
+          <div class="field">
+            <label for="phone">Mobile number</label>
+            <input id="phone" #phoneInput name="phone" type="tel" placeholder="+20 100 7513507" />
+          </div>
         </div>
 
         <div class="field">
@@ -36,7 +35,7 @@
 
         <button class="btn btn-primary" type="submit">
           Send Message
-          <span class="btn-icon" [innerHTML]="icon('send')"></span>
+          <app-icon iconName="send" class="btn-icon" />
         </button>
         <p class="form-note">This opens your email client with your message ready to send to us.</p>
       </form>
@@ -46,12 +45,12 @@
           <div class="office-card" appReveal [revealDelay]="240 + i * 90">
             <h3>{{ office.region }}</h3>
             <div class="office-row">
-              <span class="office-icon" [innerHTML]="icon('mapPin')"></span>
+              <span class="office-icon"><app-icon iconName="mapPin" /></span>
               <span>{{ office.address }}</span>
             </div>
             @for (phone of office.phones; track phone) {
               <div class="office-row">
-                <span class="office-icon" [innerHTML]="icon('phone')"></span>
+                <span class="office-icon"><app-icon iconName="phone" /></span>
                 <a [href]="'tel:' + phone.replace(' ', '')">{{ phone }}</a>
               </div>
             }
@@ -61,7 +60,7 @@
         <div class="office-card office-email" appReveal [revealDelay]="420">
           <h3>Email Us</h3>
           <div class="office-row">
-            <span class="office-icon" [innerHTML]="icon('mail')"></span>
+            <span class="office-icon"><app-icon iconName="mail" /></span>
             <a [href]="'mailto:' + contactEmail">{{ contactEmail }}</a>
           </div>
         </div>

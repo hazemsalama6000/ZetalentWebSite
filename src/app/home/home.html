@@ -16,7 +16,9 @@
       </div>
 
       <div class="hero-media" appReveal [revealDelay]="200">
-        <img src="images/hero-cover.jpg" alt="Diverse professionals across the region connected through the zetalents platform" width="1792" height="896" />
+        <div class="hero-media-frame">
+          <img src="images/hero-cover.jpg" alt="Diverse professionals across the region connected through the zetalents platform" width="1792" height="896" />
+        </div>
       </div>
     </div>
 
@@ -52,8 +54,9 @@
     </div>
 
     <div class="stat-panel" appReveal [revealDelay]="120">
-      @for (stat of heroStats; track stat.label) {
-        <div class="stat-row">
+      @for (stat of heroStats; track stat.label; let i = $index) {
+        <div class="stat-row" [class.is-last]="$last">
+          <span class="stat-index">{{ (i + 1).toString().padStart(2, '0') }}</span>
           <span class="stat-value">{{ stat.value }}</span>
           <span class="stat-label">{{ stat.label }}</span>
         </div>
@@ -63,7 +66,7 @@
 </section>
 
 <!-- Manage It All -->
-<section class="section manage" id="manage-it-all">
+<section class="section section-panel manage" id="manage-it-all">
   <div class="shell">
     <div class="section-head" appReveal>
       <span class="eyebrow">02 — Manage It All</span>
@@ -76,8 +79,8 @@
 
     <div class="audience-grid">
       @for (card of audienceCards; track card.title; let i = $index) {
-        <div class="audience-card" [class.is-dark]="card.dark" appReveal [revealDelay]="(i % 3) * 100">
-          <span class="card-icon" [innerHTML]="icon(card.icon)"></span>
+        <div class="audience-card" [class.is-accent]="$last" appReveal [revealDelay]="i * 100">
+          <span class="card-icon"><app-icon [iconName]="card.icon" /></span>
           <h3>{{ card.title }}</h3>
           <p>{{ card.description }}</p>
         </div>
@@ -87,7 +90,7 @@
 </section>
 
 <!-- Why zetalents -->
-<section class="section why dark-section" id="why-zetalents">
+<section class="section section-dark why" id="why-zetalents">
   <div class="shell">
     <div class="section-head" appReveal>
       <span class="eyebrow">03 — Why zetalents</span>
@@ -97,9 +100,7 @@
     <div class="feature-grid">
       @for (card of featureCards; track card.title; let i = $index) {
         <div class="feature-card" appReveal [revealDelay]="(i % 3) * 90">
-          <span class="card-icon">
-            <span [innerHTML]="icon(card.icon)"></span>
-          </span>
+          <span class="card-icon"><app-icon [iconName]="card.icon" /></span>
           <h3>{{ card.title }}</h3>
           <p>{{ card.description }}</p>
         </div>
@@ -120,15 +121,16 @@
       </p>
     </div>
 
-    <div class="module-grid">
+    <div class="module-index">
       @for (mod of modules; track mod.slug; let i = $index) {
-        <a class="module-card" [routerLink]="['/modules', mod.slug]" appReveal [revealDelay]="(i % 5) * 70">
-          <span class="card-icon"><span [innerHTML]="icon(mod.icon)"></span></span>
-          <h3>{{ mod.navTitle }}</h3>
-          <span class="module-card-cta">
-            View details
-            <span class="module-card-arrow" [innerHTML]="icon('arrowRight')"></span>
+        <a class="module-row" [routerLink]="['/modules', mod.slug]" appReveal [revealDelay]="(i % 5) * 60">
+          <span class="module-row-number">{{ mod.order.toString().padStart(2, '0') }}</span>
+          <span class="module-row-icon"><app-icon [iconName]="mod.icon" /></span>
+          <span class="module-row-text">
+            <span class="module-row-title">{{ mod.navTitle }}</span>
+            <span class="module-row-badge">{{ mod.badge }}</span>
           </span>
+          <span class="module-row-arrow"><app-icon iconName="arrowRight" /></span>
         </a>
       }
     </div>
@@ -136,8 +138,8 @@
 </section>
 
 <!-- Clients -->
-<section class="section clients" id="clients">
-  <div class="shell">
+<section class="section-dark clients-section" id="clients">
+  <div class="shell section-head-wrap">
     <div class="section-head" appReveal>
       <span class="eyebrow">05 — Our Clients</span>
       <h2>Organizations that trust zetalents</h2>
@@ -172,7 +174,7 @@
   <div class="shell">
     <div class="support-banner" appReveal>
       <span class="support-watermark">zetalents</span>
-      <div class="support-icon" [innerHTML]="icon('headset')"></div>
+      <div class="support-icon"><app-icon iconName="headset" /></div>
       <div class="support-copy">
         <span class="eyebrow">06 — Technical Support</span>
         <h2>Here when you need us</h2>
@@ -183,7 +185,7 @@
           zetalents HCIS applications, Microsoft technology, and operating systems.
         </p>
       </div>
-      <a class="btn btn-support" routerLink="/contact">Contact Us</a>
+      <a class="btn btn-on-dark btn-support" routerLink="/contact">Contact Us</a>
     </div>
   </div>
 </section>

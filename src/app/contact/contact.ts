@@ -1,8 +1,7 @@
 import { Component } from '@angular/core';
-import { RouterLink } from '@angular/router';
-import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
-import { iconMarkup } from '../icons';
+import { PageHeader } from '../shared/page-header';
 import { Reveal } from '../shared/reveal';
+import { Icon } from '../shared/icon';
 
 interface Office {
   region: string;
@@ -12,7 +11,7 @@ interface Office {
 
 @Component({
   selector: 'app-contact',
-  imports: [RouterLink, Reveal],
+  imports: [PageHeader, Reveal, Icon],
   templateUrl: './contact.html',
   styleUrl: './contact.scss',
 })
@@ -31,12 +30,6 @@ export class Contact {
   ];
 
   protected readonly contactEmail = 'info@zetalents.com';
-
-  constructor(private readonly sanitizer: DomSanitizer) {}
-
-  protected icon(name: string): SafeHtml {
-    return this.sanitizer.bypassSecurityTrustHtml(iconMarkup(name));
-  }
 
   protected onSubmit(event: Event, name: string, email: string, phone: string, message: string): void {
     event.preventDefault();

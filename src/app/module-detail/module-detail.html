@@ -2,34 +2,51 @@
   <section class="detail">
     <div class="shell">
       <a class="back-link" routerLink="/" fragment="products">
-        <span class="back-arrow" [innerHTML]="icon('arrowLeft')"></span>
+        <app-icon iconName="arrowLeft" class="back-arrow" />
         All Products
       </a>
 
-      <span class="eyebrow" appReveal>04 — Products &amp; Services &middot; {{ mod.order }} / 10</span>
-      <h1 appReveal [revealDelay]="70">{{ mod.heroTitle }}</h1>
-      <p class="tagline" appReveal [revealDelay]="140">{{ mod.tagline }}</p>
+      <div class="detail-layout">
+        <aside class="detail-aside">
+          <span class="aside-label">All Modules</span>
+          <nav class="module-switcher">
+            @for (item of allModules; track item.slug) {
+              <a
+                class="switcher-row"
+                [class.is-active]="item.slug === mod.slug"
+                [routerLink]="['/modules', item.slug]"
+              >
+                <span class="switcher-number">{{ item.order.toString().padStart(2, '0') }}</span>
+                <span class="switcher-title">{{ item.navTitle }}</span>
+              </a>
+            }
+          </nav>
+        </aside>
 
-      <div class="detail-body">
-        <div class="detail-panel" appReveal [revealDelay]="200">
-          <span class="detail-icon" [innerHTML]="icon(mod.icon)"></span>
-          <span class="detail-badge">{{ mod.badge }}</span>
-          <span class="detail-count">MODULE {{ mod.order }} / 10</span>
+        <div class="detail-main">
+          <span class="eyebrow" appReveal>Module {{ mod.order }} of 10</span>
+          <h1 appReveal [revealDelay]="70">{{ mod.heroTitle }}</h1>
+          <p class="tagline" appReveal [revealDelay]="140">{{ mod.tagline }}</p>
+
+          <div class="detail-panel" appReveal [revealDelay]="200">
+            <span class="detail-icon"><app-icon [iconName]="mod.icon" /></span>
+            <span class="detail-badge">{{ mod.badge }}</span>
+          </div>
+
+          <ul class="feature-list">
+            @for (feature of mod.features; track feature; let i = $index) {
+              <li appReveal [revealDelay]="240 + i * 50">
+                <span class="feature-check"><app-icon iconName="check" /></span>
+                <span>{{ feature }}</span>
+              </li>
+            }
+          </ul>
+
+          <div class="detail-cta">
+            <a class="btn btn-primary" routerLink="/contact">Request a Demo</a>
+            <a class="btn btn-ghost" routerLink="/" fragment="products">Explore All Modules</a>
+          </div>
         </div>
-
-        <ul class="feature-list">
-          @for (feature of mod.features; track feature; let i = $index) {
-            <li appReveal [revealDelay]="240 + i * 50">
-              <span class="feature-check" [innerHTML]="icon('check')"></span>
-              <span>{{ feature }}</span>
-            </li>
-          }
-        </ul>
-      </div>
-
-      <div class="detail-cta">
-        <a class="btn btn-primary" routerLink="/contact">Request a Demo</a>
-        <a class="btn btn-ghost" routerLink="/" fragment="products">Explore All Modules</a>
       </div>
     </div>
 
@@ -37,7 +54,7 @@
       <div class="shell pager-inner">
         @if (previous(); as prev) {
           <a class="pager-link pager-prev" [routerLink]="['/modules', prev.slug]">
-            <span class="pager-arrow" [innerHTML]="icon('arrowLeft')"></span>
+            <span class="pager-arrow"><app-icon iconName="arrowLeft" /></span>
             <span class="pager-copy">
               <span class="pager-label">Previous module</span>
               <span class="pager-title">{{ prev.navTitle }}</span>
@@ -50,7 +67,7 @@
               <span class="pager-label">Next module</span>
               <span class="pager-title">{{ nxt.navTitle }}</span>
             </span>
-            <span class="pager-arrow" [innerHTML]="icon('arrowRight')"></span>
+            <span class="pager-arrow"><app-icon iconName="arrowRight" /></span>
           </a>
         }
       </div>

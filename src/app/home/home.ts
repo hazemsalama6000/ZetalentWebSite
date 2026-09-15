@@ -1,10 +1,9 @@
 import { Component } from '@angular/core';
 import { RouterLink } from '@angular/router';
-import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
-import { iconMarkup } from '../icons';
 import { MODULES } from '../modules-data';
 import { Reveal } from '../shared/reveal';
 import { CountUp } from '../shared/count-up';
+import { Icon } from '../shared/icon';
 
 interface StatItem {
   value: string;
@@ -15,7 +14,6 @@ interface AudienceCard {
   icon: string;
   title: string;
   description: string;
-  dark: boolean;
 }
 
 interface FeatureCard {
@@ -31,7 +29,7 @@ interface Client {
 
 @Component({
   selector: 'app-home',
-  imports: [RouterLink, Reveal, CountUp],
+  imports: [RouterLink, Reveal, CountUp, Icon],
   templateUrl: './home.html',
   styleUrl: './home.scss',
 })
@@ -50,19 +48,16 @@ export class Home {
       icon: 'users',
       title: 'Employees',
       description: 'Full profiles, documentation, self-service & asset management.',
-      dark: false,
     },
     {
       icon: 'clipboardCheck',
       title: 'Managers',
       description: 'Approvals, oversight, and team performance tools.',
-      dark: false,
     },
     {
       icon: 'building',
       title: 'Company',
       description: 'Organization structures, payroll, talent & analytics.',
-      dark: true,
     },
   ];
 
@@ -165,10 +160,4 @@ export class Home {
     { name: 'G-Group', logo: 'clients-images/Picture47.png' },
     { name: 'ESG Eslam Elshirby Group', logo: 'clients-images/Picture48.png' },
   ];
-
-  constructor(private readonly sanitizer: DomSanitizer) {}
-
-  protected icon(name: string): SafeHtml {
-    return this.sanitizer.bypassSecurityTrustHtml(iconMarkup(name));
-  }
 }

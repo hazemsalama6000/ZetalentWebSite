@@ -1,8 +1,8 @@
-import { Component } from '@angular/core';
-import { RouterLink } from '@angular/router';
+import { AfterViewInit, Component, DestroyRef, ElementRef, inject, signal } from '@angular/core';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
-import { iconMarkup } from '../icons';
+import { PageHeader } from '../shared/page-header';
 import { Reveal } from '../shared/reveal';
+import { Icon } from '../shared/icon';
 
 interface PolicyItem {
   label?: string;
@@ -19,11 +19,11 @@ interface PolicySection {
 
 @Component({
   selector: 'app-privacy-policy',
-  imports: [RouterLink, Reveal],
+  imports: [PageHeader, Reveal, Icon],
   templateUrl: './privacy-policy.html',
   styleUrl: './privacy-policy.scss',
 })
-export class PrivacyPolicy {
+export class PrivacyPolicy implements AfterViewInit {
   protected readonly lastUpdated = 'November 28, 2025';
   protected readonly contactEmail = 'info@zetalentss.com';
   protected readonly websiteUrl = 'www.zetalentss.com';
@@ -142,10 +142,35 @@ export class PrivacyPolicy {
     },
   ];
 
-  constructor(private readonly sanitizer: DomSanitizer) {}
+  protected readonly tocEntries = [...this.sections, { number: '11', title: 'Contact Us' }];
 
-  protected icon(name: string): SafeHtml {
-    return this.sanitizer.bypassSecurityTrustHtml(iconMarkup(name));
+  protected readonly activeSection = signal('1');
+
+  private readonly sanitizer = inject(DomSanitizer);
+  private readonly host: ElementRef<HTMLElement> = inject(ElementRef);
+  private readonly destroyRef = inject(DestroyRef);
+  private observer?: IntersectionObserver;
+
+  ngAfterViewInit(): void {
+    if (typeof IntersectionObserver === 'undefined') {
+      return;
+    }
+    const sections = Array.from(
+      this.host.nativeElement.querySelectorAll<HTMLElement>('[data-section-id]'),
+    );
+    this.observer = new IntersectionObserver(
+      (entries) => {
+        const visible = entries
+          .filter((entry) => entry.isIntersecting)
+          .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
+        if (visible) {
+          this.activeSection.set(visible.target.getAttribute('data-section-id') ?? '1');
+        }
+      },
+      { rootMargin: '-20% 0px -65% 0px', threshold: [0, 0.25, 0.5, 1] },
+    );
+    sections.forEach((el) => this.observer?.observe(el));
+    this.destroyRef.onDestroy(() => this.observer?.disconnect());
   }
 
   protected linkify(text: string): SafeHtml {

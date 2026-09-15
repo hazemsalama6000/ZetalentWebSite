@@ -1,17 +1,45 @@
 /* Global design tokens & shared utility classes used across all pages/components. */
 
 :root {
-  --orange: #f2660f;
-  --orange-dark: #d4550a;
-  --ink: #1c1a18;
-  --ink-soft: #4a463f;
-  --ink-faint: #86807a;
-  --cream: #faf7f3;
-  --panel: #f4efe9;
-  --border: #e7e0d8;
-  --dark-bg: #1b1815;
-  --dark-panel: #262220;
-  --dark-border: #3a352f;
+  /* -- light surface -- */
+  --paper: #faf7f2;
+  --paper-dim: #f2ece1;
+  --paper-panel: #ffffff;
+  --line: #e5ddcd;
+  --line-strong: #d6c9b2;
+
+  /* -- dark surface -- */
+  --ink: #15130f;
+  --ink-2: #201c16;
+  --ink-3: #2a251d;
+  --line-dark: #35302a;
+
+  /* -- text on light -- */
+  --text: #1a1712;
+  --text-soft: #55503f;
+  --text-faint: #928b78;
+
+  /* -- text on dark -- */
+  --on-dark: #f4efe3;
+  --on-dark-soft: #b9b09b;
+  --on-dark-faint: #756d5c;
+
+  /* -- accent -- */
+  --rust: #b5501e;
+  --rust-deep: #8f3e16;
+  --rust-soft: #f4e3d2;
+  --rust-soft-dark: #402919;
+
+  /* -- type -- */
+  --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial,
+    sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, 'SFMono-Regular', Menlo, Consolas, monospace;
+
+  /* -- shape / motion -- */
+  --radius-sm: 4px;
+  --radius: 8px;
+  --radius-lg: 14px;
+  --ease: cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 * {
@@ -24,27 +52,39 @@ body {
   padding: 0;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 body {
-  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica,
-    Arial, sans-serif;
-  color: var(--ink);
-  background: var(--cream);
+  font-family: var(--font-sans);
+  font-size: 16px;
+  color: var(--text);
+  background: var(--paper);
   -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
 }
 
 h1,
 h2,
-h3 {
+h3,
+h4 {
   font-weight: 700;
   letter-spacing: -0.02em;
   margin: 0;
-  color: var(--ink);
+  color: var(--text);
 }
 
 p {
   margin: 0;
-  color: var(--ink-soft);
+  color: var(--text-soft);
   line-height: 1.65;
+}
+
+ul,
+ol {
+  margin: 0;
+  padding: 0;
 }
 
 a {
@@ -52,8 +92,27 @@ a {
   text-decoration: none;
 }
 
+img {
+  max-width: 100%;
+  display: block;
+}
+
+/* -- focus visibility (a11y) -- */
+:focus-visible {
+  outline: 2px solid var(--rust);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+/* -- layout shells -- */
 .shell {
-  max-width: 1160px;
+  max-width: 1180px;
+  margin-inline: auto;
+  padding-inline: 24px;
+}
+
+.shell-wide {
+  max-width: 1400px;
   margin-inline: auto;
   padding-inline: 24px;
 }
@@ -69,63 +128,109 @@ a {
   top: 16px;
   z-index: 999;
   background: var(--ink);
-  color: #fff;
+  color: var(--on-dark);
   padding: 10px 16px;
-  border-radius: 8px;
+  border-radius: var(--radius-sm);
 }
 
+/* -- eyebrow / numbered index label -- */
 .eyebrow {
-  display: inline-block;
-  font-size: 0.78rem;
-  font-weight: 700;
-  letter-spacing: 0.12em;
+  display: flex;
+  width: fit-content;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.09em;
   text-transform: uppercase;
-  color: var(--orange);
-  margin-bottom: 14px;
+  color: var(--rust);
+  margin-bottom: 16px;
+
+  &::before {
+    content: '';
+    width: 26px;
+    height: 1px;
+    background: currentColor;
+    opacity: 0.55;
+  }
 }
 
+.on-dark .eyebrow,
+.eyebrow.on-dark {
+  color: #e4a06e;
+}
+
+/* -- buttons -- */
 .btn {
   display: inline-flex;
   align-items: center;
   justify-content: center;
   gap: 8px;
-  padding: 13px 26px;
-  border-radius: 10px;
+  padding: 13px 24px;
+  border-radius: var(--radius-sm);
   font-weight: 600;
-  font-size: 0.95rem;
+  font-size: 0.92rem;
+  letter-spacing: -0.005em;
   border: 1px solid transparent;
   cursor: pointer;
-  transition: transform 0.15s ease, background 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+  transition: transform 0.15s var(--ease), background 0.2s ease, border-color 0.2s ease,
+    color 0.2s ease;
   white-space: nowrap;
 }
 
 .btn-primary {
-  background: var(--orange);
-  color: #fff;
-  box-shadow: 0 8px 20px -8px rgba(242, 102, 15, 0.6);
+  background: var(--ink);
+  color: var(--paper);
 }
 
 .btn-primary:hover {
-  background: var(--orange-dark);
-  transform: translateY(-1px) scale(1.015);
-  box-shadow: 0 12px 26px -8px rgba(242, 102, 15, 0.65);
+  background: var(--rust-deep);
+  transform: translateY(-1px);
 }
 
 .btn-primary:active {
-  transform: translateY(0) scale(0.99);
+  transform: translateY(0);
 }
 
 .btn-ghost {
   background: transparent;
-  border-color: var(--border);
-  color: var(--ink);
+  border-color: var(--line-strong);
+  color: var(--text);
 }
 
 .btn-ghost:hover {
-  border-color: var(--ink);
+  border-color: var(--text);
   transform: translateY(-1px);
 }
 
+.btn-on-dark {
+  background: var(--paper);
+  color: var(--ink);
+}
+
+.btn-on-dark:hover {
+  background: #fff;
+  transform: translateY(-1px);
+}
+
+.btn-ghost-on-dark {
+  background: transparent;
+  border-color: var(--line-dark);
+  color: var(--on-dark);
+}
+
+.btn-ghost-on-dark:hover {
+  border-color: var(--on-dark-soft);
+  transform: translateY(-1px);
+}
+
+.btn-sm {
+  padding: 9px 16px;
+  font-size: 0.85rem;
+}
+
+/* -- logo -- */
 .logo {
   display: inline-flex;
   align-items: center;
@@ -133,7 +238,7 @@ a {
 
 .logo-img {
   display: block;
-  height: 32px;
+  height: 30px;
   width: auto;
 }
 
@@ -143,16 +248,95 @@ a {
    inherited custom property set on the nearest ancestor. */
 .icon-svg {
   display: block;
-  width: var(--icon-size, 24px);
-  height: var(--icon-size, 24px);
+  width: var(--icon-size, 22px);
+  height: var(--icon-size, 22px);
 }
 
-/* ---------- Scroll reveal ---------- */
+/* -- generic section rhythm -- */
+.section {
+  padding: 100px 0;
+}
+
+.section-dark {
+  background: var(--ink);
+  color: var(--on-dark);
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    color: var(--on-dark);
+  }
+
+  p {
+    color: var(--on-dark-soft);
+  }
+}
+
+.section-panel {
+  background: var(--paper-dim);
+}
+
+.section-head {
+  max-width: 640px;
+  margin-bottom: 56px;
+}
+
+.section-lead {
+  font-size: 1.05rem;
+  margin-top: 14px;
+}
+
+/* -- badges / pills -- */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding: 6px 12px;
+  border-radius: 100px;
+  background: var(--rust-soft);
+  color: var(--rust-deep);
+}
+
+.badge-on-dark {
+  background: var(--rust-soft-dark);
+  color: #e4a06e;
+}
+
+/* -- back link -- */
+.back-link {
+  display: flex;
+  width: fit-content;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: var(--text-soft);
+  margin-bottom: 28px;
+  transition: color 0.15s ease, gap 0.15s ease;
+
+  &:hover {
+    color: var(--rust);
+    gap: 11px;
+  }
+}
+
+.back-arrow {
+  --icon-size: 16px;
+  display: flex;
+}
+
+/* -- scroll reveal -- */
 
 .reveal {
   opacity: 0;
-  transform: translateY(28px);
-  transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1), transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+  transform: translateY(24px);
+  transition: opacity 0.7s var(--ease), transform 0.7s var(--ease);
   transition-delay: var(--reveal-delay, 0ms);
 
   &.is-visible {
@@ -162,6 +346,10 @@ a {
 }
 
 @media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
   *,
   *::before,
   *::after {
@@ -169,5 +357,11 @@ a {
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
+  }
+}
+
+@media (max-width: 640px) {
+  .section {
+    padding: 72px 0;
   }
 }

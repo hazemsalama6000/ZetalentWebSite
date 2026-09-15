@@ -1,0 +1,11 @@
+<a class="back-link" [routerLink]="backPath" [fragment]="backFragment">
+  <app-icon iconName="arrowLeft" class="back-arrow" />
+  {{ backLabel }}
+</a>
+
+<span class="eyebrow" appReveal>{{ eyebrow }}</span>
+<h1 appReveal [revealDelay]="70">{{ heading }}</h1>
+
+<div class="page-header-body">
+  <ng-content></ng-content>
+</div>

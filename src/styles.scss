@@ -25,13 +25,15 @@
   --on-dark-faint: #756d5c;
 
   /* -- accent -- */
-  --rust: #b5501e;
+  //--rust: #b5501e;
+  --rust: #F27020;
+
   --rust-deep: #8f3e16;
   --rust-soft: #f4e3d2;
   --rust-soft-dark: #402919;
 
   /* -- type -- */
-  --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial,
+  --font-sans: 'Cairo','Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial,
     sans-serif;
   --font-mono: 'JetBrains Mono', ui-monospace, 'SFMono-Regular', Menlo, Consolas, monospace;
 }

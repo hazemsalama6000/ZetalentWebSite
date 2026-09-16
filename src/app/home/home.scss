@@ -74,14 +74,14 @@
 
 .hero-stat {
   padding: 26px 24px;
-  border-left: 1px solid var(--line);
+  border-inline-start: 1px solid var(--line);
   display: flex;
   flex-direction: column;
   gap: 6px;
 
   &:first-child {
-    border-left: none;
-    padding-left: 0;
+    border-inline-start: none;
+    padding-inline-start: 0;
   }
 }
 
@@ -331,6 +331,10 @@
   flex-shrink: 0;
 }
 
+[dir='rtl'] .module-row-arrow {
+  transform: translateX(4px);
+}
+
 /* ---------- Clients ---------- */
 
 .clients-section {
@@ -413,7 +417,7 @@
 
 .support-watermark {
   position: absolute;
-  right: -10px;
+  inset-inline-end: -10px;
   bottom: -46px;
   font-size: 8rem;
   font-weight: 800;
@@ -498,8 +502,8 @@
   }
 
   .hero-stat:nth-child(2n + 1) {
-    border-left: none;
-    padding-left: 0;
+    border-inline-start: none;
+    padding-inline-start: 0;
   }
 
   .hero-stat:nth-child(-n + 2) {

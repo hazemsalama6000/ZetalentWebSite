@@ -3,27 +3,26 @@
   <div class="shell">
     <div class="hero-top">
       <div class="hero-copy">
-        <span class="eyebrow" appReveal>Regional HCIS Platform</span>
-        <h1 appReveal [revealDelay]="90">One system to manage your entire workforce.</h1>
+        <span class="eyebrow" appReveal>{{ 'home.hero.eyebrow' | translate }}</span>
+        <h1 appReveal [revealDelay]="90">{{ 'home.hero.title' | translate }}</h1>
         <p class="lead" appReveal [revealDelay]="180">
-          zetalents is a regional Human Capital Information System built for the way you work —
-          from onboarding to succession, in one connected, cloud-based platform.
+          {{ 'home.hero.lead' | translate }}
         </p>
         <div class="hero-actions" appReveal [revealDelay]="270">
-          <a class="btn btn-primary" routerLink="/contact">Request a Demo</a>
-          <a class="btn btn-ghost" routerLink="/" fragment="products">Explore the Platform</a>
+          <a class="btn btn-primary" routerLink="/contact">{{ 'home.hero.ctaPrimary' | translate }}</a>
+          <a class="btn btn-ghost" routerLink="/" fragment="products">{{ 'home.hero.ctaSecondary' | translate }}</a>
         </div>
       </div>
 
       <div class="hero-media" appReveal [revealDelay]="200">
         <div class="hero-media-frame">
-          <img src="images/hero-cover.jpg" alt="Diverse professionals across the region connected through the zetalents platform" width="1792" height="896" />
+          <img src="images/hero-cover.jpg" [alt]="'home.hero.imageAlt' | translate" width="1792" height="896" />
         </div>
       </div>
     </div>
 
     <div class="hero-stats">
-      @for (stat of heroStats; track stat.label; let i = $index) {
+      @for (stat of heroStats(); track stat.label; let i = $index) {
         <div class="hero-stat" appReveal [revealDelay]="i * 90">
           <span class="hero-stat-value" [appCountUp]="stat.value">{{ stat.value }}</span>
           <span class="hero-stat-label">{{ stat.label }}</span>
@@ -37,24 +36,14 @@
 <section class="section who-we-are" id="who-we-are">
   <div class="shell split">
     <div class="split-copy" appReveal>
-      <span class="eyebrow">01 — Who We Are</span>
-      <h2>A regional HCIS specialist</h2>
-      <p>
-        <strong>zetalents</strong>, headquartered in Riyadh, Saudi Arabia, has been operating
-        since 2016, delivering comprehensive Human Capital Information Systems to clients
-        across Saudi Arabia, Egypt, and the wider MENA region.
-      </p>
-      <p>
-        <strong>zetalents HCIS</strong> is a comprehensive, cloud-based Human Capital
-        Management platform that streamlines HR processes end to end — applicant tracking,
-        benefit programs, workforce training and development, payroll, and evolving
-        governmental regulations, all built for both employee satisfaction and operational
-        efficiency.
-      </p>
+      <span class="eyebrow">{{ 'home.whoWeAre.eyebrow' | translate }}</span>
+      <h2>{{ 'home.whoWeAre.title' | translate }}</h2>
+      <p [innerHTML]="'home.whoWeAre.p1' | translate"></p>
+      <p [innerHTML]="'home.whoWeAre.p2' | translate"></p>
     </div>
 
     <div class="stat-panel" appReveal [revealDelay]="120">
-      @for (stat of heroStats; track stat.label; let i = $index) {
+      @for (stat of heroStats(); track stat.label; let i = $index) {
         <div class="stat-row" [class.is-last]="$last">
           <span class="stat-index">{{ (i + 1).toString().padStart(2, '0') }}</span>
           <span class="stat-value">{{ stat.value }}</span>
@@ -69,16 +58,15 @@
 <section class="section section-panel manage" id="manage-it-all">
   <div class="shell">
     <div class="section-head" appReveal>
-      <span class="eyebrow">02 — Manage It All</span>
-      <h2>One system, total control</h2>
+      <span class="eyebrow">{{ 'home.manage.eyebrow' | translate }}</span>
+      <h2>{{ 'home.manage.title' | translate }}</h2>
       <p class="section-lead">
-        From individual employee records to company-wide analytics, zetalents delivers
-        complete HR management across every level — country, company, and currency.
+        {{ 'home.manage.lead' | translate }}
       </p>
     </div>
 
     <div class="audience-grid">
-      @for (card of audienceCards; track card.title; let i = $index) {
+      @for (card of audienceCards(); track card.title; let i = $index) {
         <div class="audience-card" [class.is-accent]="$last" appReveal [revealDelay]="i * 100">
           <span class="card-icon"><app-icon [iconName]="card.icon" /></span>
           <h3>{{ card.title }}</h3>
@@ -93,12 +81,12 @@
 <section class="section section-dark why" id="why-zetalents">
   <div class="shell">
     <div class="section-head" appReveal>
-      <span class="eyebrow">03 — Why zetalents</span>
-      <h2>What sets us apart</h2>
+      <span class="eyebrow">{{ 'home.why.eyebrow' | translate }}</span>
+      <h2>{{ 'home.why.title' | translate }}</h2>
     </div>
 
     <div class="feature-grid">
-      @for (card of featureCards; track card.title; let i = $index) {
+      @for (card of featureCards(); track card.title; let i = $index) {
         <div class="feature-card" appReveal [revealDelay]="(i % 3) * 90">
           <span class="card-icon"><app-icon [iconName]="card.icon" /></span>
           <h3>{{ card.title }}</h3>
@@ -113,11 +101,10 @@
 <section class="section products" id="products">
   <div class="shell">
     <div class="section-head" appReveal>
-      <span class="eyebrow">04 — Products &amp; Services</span>
-      <h2>10 modules, one connected platform</h2>
+      <span class="eyebrow">{{ 'home.products.eyebrow' | translate }}</span>
+      <h2>{{ 'home.products.title' | translate }}</h2>
       <p class="section-lead">
-        Every module shares one employee record, so data entered once flows across the
-        platform. Select a module to see it in detail.
+        {{ 'home.products.lead' | translate }}
       </p>
     </div>
 
@@ -127,10 +114,10 @@
           <span class="module-row-number">{{ mod.order.toString().padStart(2, '0') }}</span>
           <span class="module-row-icon"><app-icon [iconName]="mod.icon" /></span>
           <span class="module-row-text">
-            <span class="module-row-title">{{ mod.navTitle }}</span>
-            <span class="module-row-badge">{{ mod.badge }}</span>
+            <span class="module-row-title">{{ moduleText(mod.slug)?.navTitle }}</span>
+            <span class="module-row-badge">{{ moduleText(mod.slug)?.badge }}</span>
           </span>
-          <span class="module-row-arrow"><app-icon iconName="arrowRight" /></span>
+          <span class="module-row-arrow"><app-icon [iconName]="i18n.mirrorIcon('arrowRight')" /></span>
         </a>
       }
     </div>
@@ -141,9 +128,9 @@
 <section class="section-dark clients-section" id="clients">
   <div class="shell section-head-wrap">
     <div class="section-head" appReveal>
-      <span class="eyebrow">05 — Our Clients</span>
-      <h2>Organizations that trust zetalents</h2>
-      <p class="section-lead">Trusted by leading organizations across KSA and Egypt.</p>
+      <span class="eyebrow">{{ 'home.clients.eyebrow' | translate }}</span>
+      <h2>{{ 'home.clients.title' | translate }}</h2>
+      <p class="section-lead">{{ 'home.clients.lead' | translate }}</p>
     </div>
   </div>
 
@@ -176,16 +163,13 @@
       <span class="support-watermark">zetalents</span>
       <div class="support-icon"><app-icon iconName="headset" /></div>
       <div class="support-copy">
-        <span class="eyebrow">06 — Technical Support</span>
-        <h2>Here when you need us</h2>
+        <span class="eyebrow">{{ 'home.support.eyebrow' | translate }}</span>
+        <h2>{{ 'home.support.title' | translate }}</h2>
         <p>
-          Our customer support organization includes highly trained professionals, all of
-          whom have the broad knowledge base required to resolve customer inquiries
-          accurately and quickly. Our support staff have expert understanding of all
-          zetalents HCIS applications, Microsoft technology, and operating systems.
+          {{ 'home.support.body' | translate }}
         </p>
       </div>
-      <a class="btn btn-on-dark btn-support" routerLink="/contact">Contact Us</a>
+      <a class="btn btn-on-dark btn-support" routerLink="/contact">{{ 'home.support.cta' | translate }}</a>
     </div>
   </div>
 </section>

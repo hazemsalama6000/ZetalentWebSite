@@ -1,26 +1,21 @@
 <section class="privacy-page">
   <div class="shell">
-    <app-page-header eyebrow="Privacy Policy" heading="Privacy Policy – Zetalents">
+    <app-page-header [eyebrow]="'privacyPolicy.eyebrow' | translate" [heading]="'privacyPolicy.heading' | translate">
       <p class="updated" appReveal [revealDelay]="140">
-        <strong>Last updated:</strong> {{ lastUpdated }}
+        <strong>{{ 'privacyPolicy.lastUpdatedLabel' | translate }}</strong> {{ 'privacyPolicy.lastUpdated' | translate }}
       </p>
 
-      <p class="intro" appReveal [revealDelay]="200">
-        Zetalents (&ldquo;we&rdquo;, &ldquo;our&rdquo;, &ldquo;us&rdquo;) is committed to protecting your
-        personal data and respecting your privacy. This Privacy Policy explains how we collect, store,
-        use, and protect your information when you visit our website, use our services, or interact with
-        our team.
-      </p>
+      <p class="intro" appReveal [revealDelay]="200" [innerHTML]="'privacyPolicy.intro1' | translate"></p>
       <p class="intro" appReveal [revealDelay]="240">
-        By using our website, you agree to the terms of this Privacy Policy.
+        {{ 'privacyPolicy.intro2' | translate }}
       </p>
     </app-page-header>
 
     <div class="policy-layout">
       <aside class="policy-toc">
-        <span class="aside-label">On This Page</span>
+        <span class="aside-label">{{ 'privacyPolicy.onThisPage' | translate }}</span>
         <nav>
-          @for (entry of tocEntries; track entry.number) {
+          @for (entry of tocEntries(); track entry.number) {
             <a class="toc-row" [class.is-active]="activeSection() === entry.number" [href]="'#section-' + entry.number">
               <span class="toc-number">{{ entry.number }}</span>
               <span class="toc-title">{{ entry.title }}</span>
@@ -30,7 +25,7 @@
       </aside>
 
       <div class="policy-body">
-        @for (section of sections; track section.number; let i = $index) {
+        @for (section of sections(); track section.number; let i = $index) {
           <article class="policy-section" [id]="'section-' + section.number" [attr.data-section-id]="section.number" appReveal [revealDelay]="(i % 4) * 40">
             <h2><span class="section-number">{{ section.number }}</span>{{ section.title }}</h2>
 
@@ -58,32 +53,33 @@
           </article>
         }
 
-        <article class="policy-section contact-section" id="section-11" data-section-id="11" appReveal [revealDelay]="80">
-          <h2><span class="section-number">11</span>Contact Us</h2>
-          <p>If you have any questions about this Privacy Policy, please contact:</p>
+        @if (contactSection(); as contact) {
+          <article class="policy-section contact-section" [id]="'section-' + contact.number" [attr.data-section-id]="contact.number" appReveal [revealDelay]="80">
+            <h2><span class="section-number">{{ contact.number }}</span>{{ contact.title }}</h2>
+            <p>{{ contact.intro }}</p>
 
-          <div class="contact-card">
-            <h3>Zetalents</h3>
-            <div class="contact-row">
-              <span class="contact-icon"><app-icon iconName="mail" /></span>
-              <a [href]="'mailto:' + contactEmail">{{ contactEmail }}</a>
+            <div class="contact-card">
+              <h3>{{ contact.cardTitle }}</h3>
+              <div class="contact-row">
+                <span class="contact-icon"><app-icon iconName="mail" /></span>
+                <a [href]="'mailto:' + contactEmail" dir="ltr">{{ contactEmail }}</a>
+              </div>
+              <div class="contact-row">
+                <span class="contact-icon"><app-icon iconName="globe" /></span>
+                <a [href]="'https://' + websiteUrl" target="_blank" rel="noopener" dir="ltr">{{ websiteUrl }}</a>
+              </div>
             </div>
-            <div class="contact-row">
-              <span class="contact-icon"><app-icon iconName="globe" /></span>
-              <a [href]="'https://' + websiteUrl" target="_blank" rel="noopener">{{ websiteUrl }}</a>
-            </div>
-          </div>
 
-          <a class="dpo-link" [href]="'mailto:' + contactEmail">
-            Contact Data Protection Team
-            <app-icon iconName="arrowUpRight" class="dpo-icon" />
-          </a>
+            <a class="dpo-link" [href]="'mailto:' + contactEmail">
+              {{ contact.dpoLink }}
+              <app-icon iconName="arrowUpRight" class="dpo-icon" />
+            </a>
 
-          <p class="footnote">
-            This Privacy Policy applies to visitors to our website and users of our services. For
-            country-specific or product-specific privacy information, please contact our team.
-          </p>
-        </article>
+            <p class="footnote">
+              {{ contact.footnote }}
+            </p>
+          </article>
+        }
       </div>
     </div>
   </div>

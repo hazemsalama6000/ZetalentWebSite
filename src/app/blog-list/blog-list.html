@@ -1,0 +1,30 @@
+<section class="blog-list-page">
+  <div class="shell">
+    <app-page-header [eyebrow]="'blogList.eyebrow' | translate" [heading]="'blogList.heading' | translate">
+      <p class="tagline" appReveal [revealDelay]="140">{{ 'blogList.lead' | translate }}</p>
+    </app-page-header>
+
+    <div class="post-grid">
+      @for (post of posts(); track post.slug; let i = $index) {
+        <a class="post-card" [routerLink]="['/blog', post.slug]" appReveal [revealDelay]="i * 80">
+          <div class="post-cover">
+            <img [src]="post.image" [alt]="post.title" class="post-cover-image" loading="lazy" />
+          </div>
+          <div class="post-body">
+            <span class="post-category">{{ post.category }}</span>
+            <h2>{{ post.title }}</h2>
+            <p>{{ post.excerpt }}</p>
+            <div class="post-meta">
+              <span class="post-meta-item"><app-icon iconName="calendar" class="meta-icon" />{{ post.dateLabel }}</span>
+              <span class="post-meta-item"><app-icon iconName="clock" class="meta-icon" />{{ post.readTime }}</span>
+            </div>
+            <span class="post-cta">
+              {{ 'blogList.readArticle' | translate }}
+              <app-icon iconName="arrowUpRight" class="post-cta-icon" />
+            </span>
+          </div>
+        </a>
+      }
+    </div>
+  </div>
+</section>

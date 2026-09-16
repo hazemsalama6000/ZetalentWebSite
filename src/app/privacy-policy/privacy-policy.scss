@@ -49,9 +49,9 @@
   padding: 7px 0;
   font-size: 0.85rem;
   color: var(--text-faint);
-  border-left: 2px solid transparent;
-  padding-left: 10px;
-  margin-left: -12px;
+  border-inline-start: 2px solid transparent;
+  padding-inline-start: 10px;
+  margin-inline-start: -12px;
   transition: color 0.15s ease, border-color 0.15s ease;
 
   &:hover {
@@ -60,7 +60,7 @@
 
   &.is-active {
     color: var(--rust-deep);
-    border-left-color: var(--rust);
+    border-inline-start-color: var(--rust);
     font-weight: 600;
   }
 }
@@ -100,13 +100,14 @@
 
   ul {
     margin-top: 12px;
-    padding-left: 0;
+    padding-inline-start: 0;
     list-style: none;
   }
 
   li {
     position: relative;
-    padding: 8px 0 8px 20px;
+    padding-block: 8px;
+    padding-inline-start: 20px;
     font-size: 0.94rem;
     color: var(--text-soft);
     line-height: 1.6;
@@ -114,7 +115,7 @@
     &::before {
       content: '';
       position: absolute;
-      left: 0;
+      inset-inline-start: 0;
       top: 17px;
       width: 6px;
       height: 6px;

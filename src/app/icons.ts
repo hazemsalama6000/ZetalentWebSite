@@ -28,6 +28,8 @@ export const ICON_PATHS: Record<string, string> = {
   send: '<path d="M22 2 11 13"/><path d="m22 2-7 20-4-9-9-4 20-7z"/>',
   chevronRight: '<path d="m9 18 6-6-6-6"/>',
   arrowUpRight: '<path d="M7 17 17 7"/><path d="M7 7h10v10"/>',
+  calendar: '<rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/>',
+  user: '<path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/>',
 };
 
 export function iconMarkup(name: string): string {

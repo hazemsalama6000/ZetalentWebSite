@@ -1,84 +1,86 @@
 @if (module(); as mod) {
-  <section class="detail">
-    <div class="shell">
-      <a class="back-link" routerLink="/" fragment="products">
-        <app-icon iconName="arrowLeft" class="back-arrow" />
-        All Products
-      </a>
+  @if (moduleText(mod.slug); as text) {
+    <section class="detail">
+      <div class="shell">
+        <a class="back-link" routerLink="/" fragment="products">
+          <app-icon [iconName]="i18n.mirrorIcon('arrowLeft')" class="back-arrow" />
+          {{ 'moduleDetail.allProducts' | translate }}
+        </a>
 
-      <div class="detail-layout">
-        <aside class="detail-aside">
-          <span class="aside-label">All Modules</span>
-          <nav class="module-switcher">
-            @for (item of allModules; track item.slug) {
-              <a
-                class="switcher-row"
-                [class.is-active]="item.slug === mod.slug"
-                [routerLink]="['/modules', item.slug]"
-              >
-                <span class="switcher-number">{{ item.order.toString().padStart(2, '0') }}</span>
-                <span class="switcher-title">{{ item.navTitle }}</span>
-              </a>
-            }
-          </nav>
-        </aside>
+        <div class="detail-layout">
+          <aside class="detail-aside">
+            <span class="aside-label">{{ 'moduleDetail.allModules' | translate }}</span>
+            <nav class="module-switcher">
+              @for (item of allModules; track item.slug) {
+                <a
+                  class="switcher-row"
+                  [class.is-active]="item.slug === mod.slug"
+                  [routerLink]="['/modules', item.slug]"
+                >
+                  <span class="switcher-number">{{ item.order.toString().padStart(2, '0') }}</span>
+                  <span class="switcher-title">{{ moduleText(item.slug)?.navTitle }}</span>
+                </a>
+              }
+            </nav>
+          </aside>
 
-        <div class="detail-main">
-          <span class="eyebrow" appReveal>Module {{ mod.order }} of 10</span>
-          <h1 appReveal [revealDelay]="70">{{ mod.heroTitle }}</h1>
-          <p class="tagline" appReveal [revealDelay]="140">{{ mod.tagline }}</p>
+          <div class="detail-main">
+            <span class="eyebrow" appReveal>{{ 'moduleDetail.moduleOf' | translate: { order: mod.order, total: allModules.length } }}</span>
+            <h1 appReveal [revealDelay]="70">{{ text.heroTitle }}</h1>
+            <p class="tagline" appReveal [revealDelay]="140">{{ text.tagline }}</p>
 
-          <div class="detail-panel" appReveal [revealDelay]="200">
-            <span class="detail-icon"><app-icon [iconName]="mod.icon" /></span>
-            <span class="detail-badge">{{ mod.badge }}</span>
-          </div>
+            <div class="detail-panel" appReveal [revealDelay]="200">
+              <span class="detail-icon"><app-icon [iconName]="mod.icon" /></span>
+              <span class="detail-badge">{{ text.badge }}</span>
+            </div>
 
-          <ul class="feature-list">
-            @for (feature of mod.features; track feature; let i = $index) {
-              <li appReveal [revealDelay]="240 + i * 50">
-                <span class="feature-check"><app-icon iconName="check" /></span>
-                <span>{{ feature }}</span>
-              </li>
-            }
-          </ul>
+            <ul class="feature-list">
+              @for (feature of text.features; track feature; let i = $index) {
+                <li appReveal [revealDelay]="240 + i * 50">
+                  <span class="feature-check"><app-icon iconName="check" /></span>
+                  <span>{{ feature }}</span>
+                </li>
+              }
+            </ul>
 
-          <div class="detail-cta">
-            <a class="btn btn-primary" routerLink="/contact">Request a Demo</a>
-            <a class="btn btn-ghost" routerLink="/" fragment="products">Explore All Modules</a>
+            <div class="detail-cta">
+              <a class="btn btn-primary" routerLink="/contact">{{ 'common.requestDemo' | translate }}</a>
+              <a class="btn btn-ghost" routerLink="/" fragment="products">{{ 'moduleDetail.exploreAllModules' | translate }}</a>
+            </div>
           </div>
         </div>
       </div>
-    </div>
 
-    <nav class="module-pager">
-      <div class="shell pager-inner">
-        @if (previous(); as prev) {
-          <a class="pager-link pager-prev" [routerLink]="['/modules', prev.slug]">
-            <span class="pager-arrow"><app-icon iconName="arrowLeft" /></span>
-            <span class="pager-copy">
-              <span class="pager-label">Previous module</span>
-              <span class="pager-title">{{ prev.navTitle }}</span>
-            </span>
-          </a>
-        }
-        @if (next(); as nxt) {
-          <a class="pager-link pager-next" [routerLink]="['/modules', nxt.slug]">
-            <span class="pager-copy">
-              <span class="pager-label">Next module</span>
-              <span class="pager-title">{{ nxt.navTitle }}</span>
-            </span>
-            <span class="pager-arrow"><app-icon iconName="arrowRight" /></span>
-          </a>
-        }
-      </div>
-    </nav>
-  </section>
+      <nav class="module-pager">
+        <div class="shell pager-inner">
+          @if (previous(); as prev) {
+            <a class="pager-link pager-prev" [routerLink]="['/modules', prev.slug]">
+              <span class="pager-arrow"><app-icon [iconName]="i18n.mirrorIcon('arrowLeft')" /></span>
+              <span class="pager-copy">
+                <span class="pager-label">{{ 'moduleDetail.previousModule' | translate }}</span>
+                <span class="pager-title">{{ moduleText(prev.slug)?.navTitle }}</span>
+              </span>
+            </a>
+          }
+          @if (next(); as nxt) {
+            <a class="pager-link pager-next" [routerLink]="['/modules', nxt.slug]">
+              <span class="pager-copy">
+                <span class="pager-label">{{ 'moduleDetail.nextModule' | translate }}</span>
+                <span class="pager-title">{{ moduleText(nxt.slug)?.navTitle }}</span>
+              </span>
+              <span class="pager-arrow"><app-icon [iconName]="i18n.mirrorIcon('arrowRight')" /></span>
+            </a>
+          }
+        </div>
+      </nav>
+    </section>
+  }
 } @else {
   <section class="detail not-found">
     <div class="shell">
-      <h1>Module not found</h1>
-      <p>We couldn't find that module. It may have moved.</p>
-      <a class="btn btn-primary" routerLink="/" fragment="products">Back to Products</a>
+      <h1>{{ 'moduleDetail.notFoundTitle' | translate }}</h1>
+      <p>{{ 'moduleDetail.notFoundBody' | translate }}</p>
+      <a class="btn btn-primary" routerLink="/" fragment="products">{{ 'moduleDetail.backToProducts' | translate }}</a>
     </div>
   </section>
 }

@@ -1,9 +1,11 @@
-import { Component } from '@angular/core';
+import { Component, computed, inject } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { MODULES } from '../modules-data';
 import { Reveal } from '../shared/reveal';
 import { CountUp } from '../shared/count-up';
 import { Icon } from '../shared/icon';
+import { I18nService } from '../i18n/i18n.service';
+import { TranslatePipe } from '../i18n/translate.pipe';
 
 interface StatItem {
   value: string;
@@ -29,85 +31,22 @@ interface Client {
 
 @Component({
   selector: 'app-home',
-  imports: [RouterLink, Reveal, CountUp, Icon],
+  imports: [RouterLink, Reveal, CountUp, Icon, TranslatePipe],
   templateUrl: './home.html',
   styleUrl: './home.scss',
 })
 export class Home {
+  protected readonly i18n = inject(I18nService);
+
   protected readonly modules = MODULES;
 
-  protected readonly heroStats: StatItem[] = [
-    { value: '2016', label: 'Operating since, from Riyadh KSA' },
-    { value: '3', label: 'Markets served — KSA, Egypt & MENA' },
-    { value: '10', label: 'Integrated HCIS modules' },
-    { value: '100%', label: 'Cloud-hosted, web-based platform' },
-  ];
+  protected readonly heroStats = computed(() => this.i18n.list<StatItem>('home.stats'));
+  protected readonly audienceCards = computed(() => this.i18n.list<AudienceCard>('home.audience'));
+  protected readonly featureCards = computed(() => this.i18n.list<FeatureCard>('home.features'));
 
-  protected readonly audienceCards: AudienceCard[] = [
-    {
-      icon: 'users',
-      title: 'Employees',
-      description: 'Full profiles, documentation, self-service & asset management.',
-    },
-    {
-      icon: 'clipboardCheck',
-      title: 'Managers',
-      description: 'Approvals, oversight, and team performance tools.',
-    },
-    {
-      icon: 'building',
-      title: 'Company',
-      description: 'Organization structures, payroll, talent & analytics.',
-    },
-  ];
-
-  protected readonly featureCards: FeatureCard[] = [
-    {
-      icon: 'target',
-      title: 'Regional Focus',
-      description: 'Operating since 2016, serving clients across Saudi Arabia, Egypt, and the wider MENA region.',
-    },
-    {
-      icon: 'cloud',
-      title: 'Fully Cloud-Based',
-      description: 'A web-based, cloud-hosted HCIS covering the complete employee lifecycle in one platform.',
-    },
-    {
-      icon: 'shieldCheck',
-      title: 'Configurable',
-      description: 'Adaptable to local labor law, payroll, and reporting requirements — plus native government integrations.',
-    },
-    {
-      icon: 'link',
-      title: 'Integration & Connectivity',
-      description: 'Seamlessly connects with government platforms, ERP systems, and time & attendance devices.',
-    },
-    {
-      icon: 'smartphone',
-      title: 'Ease of Use & Flexibility',
-      description: 'An intuitive interface and highly configurable workflows that adapt to how your team works.',
-    },
-    {
-      icon: 'checkCircle',
-      title: 'End-to-End',
-      description: 'One connected system spanning core HR, workforce management, and talent — no more scattered tools.',
-    },
-    {
-      icon: 'globe',
-      title: 'Localized',
-      description: 'Arabic and English support, fully aligned with local labor law and government requirements.',
-    },
-    {
-      icon: 'cpu',
-      title: 'Hi-Tech',
-      description: 'Built on a modern, secure cloud architecture that scales with your organization.',
-    },
-    {
-      icon: 'handshake',
-      title: 'Dedicated Support',
-      description: 'A technical support team with deep product expertise standing behind every deployment.',
-    },
-  ];
+  protected moduleText(slug: string) {
+    return this.i18n.raw<{ navTitle: string; badge: string }>(`modules.${slug}`);
+  }
 
   protected readonly clientsRowOne: Client[] = [
     { name: 'Saudi Finance Company', logo: 'clients-images/Picture3.png' },

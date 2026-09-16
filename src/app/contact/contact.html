@@ -1,47 +1,46 @@
 <section class="contact-page">
   <div class="shell">
-    <app-page-header eyebrow="Contact" heading="We are here to help!">
+    <app-page-header [eyebrow]="'contact.eyebrow' | translate" [heading]="'contact.heading' | translate">
       <p class="tagline" appReveal [revealDelay]="140">
-        If you need any assistance, please reach out directly or complete the form below and
-        we'll be in touch as soon as possible.
+        {{ 'contact.tagline' | translate }}
       </p>
     </app-page-header>
 
     <div class="contact-body">
       <form class="contact-form" appReveal [revealDelay]="200" (submit)="onSubmit($event, nameInput.value, emailInput.value, phoneInput.value, messageInput.value)">
-        <span class="form-label">Send a message</span>
+        <span class="form-label">{{ 'contact.formLabel' | translate }}</span>
 
         <div class="field">
-          <label for="name">Full name</label>
-          <input id="name" #nameInput name="name" type="text" required placeholder="Jane Doe" />
+          <label for="name">{{ 'contact.nameLabel' | translate }}</label>
+          <input id="name" #nameInput name="name" type="text" required [placeholder]="'contact.namePlaceholder' | translate" />
         </div>
 
         <div class="field-row">
           <div class="field">
-            <label for="email">Email address</label>
-            <input id="email" #emailInput name="email" type="email" required placeholder="jane@company.com" />
+            <label for="email">{{ 'contact.emailLabel' | translate }}</label>
+            <input id="email" #emailInput name="email" type="email" required dir="ltr" [placeholder]="'contact.emailPlaceholder' | translate" />
           </div>
 
           <div class="field">
-            <label for="phone">Mobile number</label>
-            <input id="phone" #phoneInput name="phone" type="tel" placeholder="+20 100 7513507" />
+            <label for="phone">{{ 'contact.phoneLabel' | translate }}</label>
+            <input id="phone" #phoneInput name="phone" type="tel" dir="ltr" [placeholder]="'contact.phonePlaceholder' | translate" />
           </div>
         </div>
 
         <div class="field">
-          <label for="message">Message</label>
-          <textarea id="message" #messageInput name="message" rows="5" required placeholder="How can we help?"></textarea>
+          <label for="message">{{ 'contact.messageLabel' | translate }}</label>
+          <textarea id="message" #messageInput name="message" rows="5" required [placeholder]="'contact.messagePlaceholder' | translate"></textarea>
         </div>
 
         <button class="btn btn-primary" type="submit">
-          Send Message
+          {{ 'contact.sendButton' | translate }}
           <app-icon iconName="send" class="btn-icon" />
         </button>
-        <p class="form-note">This opens your email client with your message ready to send to us.</p>
+        <p class="form-note">{{ 'contact.formNote' | translate }}</p>
       </form>
 
       <div class="offices">
-        @for (office of offices; track office.region; let i = $index) {
+        @for (office of offices(); track office.region; let i = $index) {
           <div class="office-card" appReveal [revealDelay]="240 + i * 90">
             <h3>{{ office.region }}</h3>
             <div class="office-row">
@@ -51,17 +50,17 @@
             @for (phone of office.phones; track phone) {
               <div class="office-row">
                 <span class="office-icon"><app-icon iconName="phone" /></span>
-                <a [href]="'tel:' + phone.replace(' ', '')">{{ phone }}</a>
+                <a [href]="'tel:' + phone.replace(' ', '')" dir="ltr">{{ phone }}</a>
               </div>
             }
           </div>
         }
 
         <div class="office-card office-email" appReveal [revealDelay]="420">
-          <h3>Email Us</h3>
+          <h3>{{ 'contact.emailUsLabel' | translate }}</h3>
           <div class="office-row">
             <span class="office-icon"><app-icon iconName="mail" /></span>
-            <a [href]="'mailto:' + contactEmail">{{ contactEmail }}</a>
+            <a [href]="'mailto:' + contactEmail" dir="ltr">{{ contactEmail }}</a>
           </div>
         </div>
       </div>

@@ -1,6 +1,6 @@
 <a class="back-link" [routerLink]="backPath" [fragment]="backFragment">
-  <app-icon iconName="arrowLeft" class="back-arrow" />
-  {{ backLabel }}
+  <app-icon [iconName]="i18n.mirrorIcon('arrowLeft')" class="back-arrow" />
+  {{ backLabel ?? ('common.backToHome' | translate) }}
 </a>
 
 <span class="eyebrow" appReveal>{{ eyebrow }}</span>

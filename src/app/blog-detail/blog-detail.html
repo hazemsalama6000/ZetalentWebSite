@@ -1,0 +1,109 @@
+@if (post(); as p) {
+  <section class="blog-detail-page">
+    <div class="shell">
+      <app-page-header
+        [backPath]="['/blog']"
+        [backLabel]="'blogDetail.backToBlog' | translate"
+        [eyebrow]="p.category"
+        [heading]="p.title"
+      >
+        <div class="post-meta" appReveal [revealDelay]="140">
+          <span class="post-meta-item"><app-icon iconName="user" class="meta-icon" />{{ p.author }}</span>
+          <span class="post-meta-item"><app-icon iconName="calendar" class="meta-icon" />{{ p.dateLabel }}</span>
+          <span class="post-meta-item"><app-icon iconName="clock" class="meta-icon" />{{ p.readTime }}</span>
+        </div>
+      </app-page-header>
+
+      <div class="article-layout">
+        <aside class="article-toc">
+          <span class="aside-label">{{ 'blogDetail.onThisPage' | translate }}</span>
+          <nav>
+            @for (entry of p.toc; track entry.id) {
+              <a class="toc-row" [class.is-active]="activeSection() === entry.id" [href]="'#' + entry.id">
+                {{ entry.label }}
+              </a>
+            }
+          </nav>
+        </aside>
+
+        <div class="article-body">
+          @for (section of p.sections; track section.id; let i = $index) {
+            <article
+              class="article-section"
+              [id]="section.id"
+              [attr.data-section-id]="section.id"
+              appReveal
+              [revealDelay]="(i % 4) * 40"
+            >
+              <h2>{{ section.heading }}</h2>
+
+              @for (para of section.paragraphs; track para) {
+                <p [innerHTML]="para"></p>
+              }
+
+              @if (section.list) {
+                @if (section.listType === 'unordered') {
+                  <ul>
+                    @for (item of section.list; track item) {
+                      <li [innerHTML]="item"></li>
+                    }
+                  </ul>
+                } @else {
+                  <ol>
+                    @for (item of section.list; track item) {
+                      <li [innerHTML]="item"></li>
+                    }
+                  </ol>
+                }
+              }
+
+              @for (para of section.outro; track para) {
+                <p [innerHTML]="para"></p>
+              }
+
+              @for (sub of section.subsections; track sub.id) {
+                <div class="article-subsection" [id]="sub.id" [attr.data-section-id]="sub.id">
+                  <h3>{{ sub.heading }}</h3>
+                  @for (para of sub.paragraphs; track para) {
+                    <p [innerHTML]="para"></p>
+                  }
+                  @if (sub.list) {
+                    @if (sub.listType === 'unordered') {
+                      <ul>
+                        @for (item of sub.list; track item) {
+                          <li [innerHTML]="item"></li>
+                        }
+                      </ul>
+                    } @else {
+                      <ol>
+                        @for (item of sub.list; track item) {
+                          <li [innerHTML]="item"></li>
+                        }
+                      </ol>
+                    }
+                  }
+                  @for (para of sub.outro; track para) {
+                    <p [innerHTML]="para"></p>
+                  }
+                </div>
+              }
+            </article>
+          }
+        </div>
+      </div>
+
+      <div class="article-footer">
+        <a class="btn btn-primary" routerLink="/blog">{{ 'blogDetail.exploreMore' | translate }}</a>
+        <a class="btn btn-ghost" routerLink="/contact">{{ 'common.requestDemo' | translate }}</a>
+      </div>
+    </div>
+  </section>
+} @else {
+  <section class="blog-detail-page not-found">
+    <div class="shell">
+      <h1>{{ 'blogDetail.notFoundTitle' | translate }}</h1>
+      <p>{{ 'blogDetail.notFoundBody' | translate }}</p>
+      <a class="btn btn-primary" routerLink="/blog">{{ 'blogDetail.backToBlog' | translate }}</a>
+    </div>
+  </section>
+}

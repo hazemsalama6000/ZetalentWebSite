@@ -1,30 +1,34 @@
-import { Component, HostListener, OnDestroy, OnInit, signal } from '@angular/core';
+import { Component, HostListener, OnDestroy, OnInit, inject, signal } from '@angular/core';
 import { NavigationEnd, Router, RouterLink, RouterOutlet } from '@angular/router';
 import { filter } from 'rxjs';
 import { Icon } from './shared/icon';
+import { I18nService } from './i18n/i18n.service';
+import { TranslatePipe } from './i18n/translate.pipe';
 
 interface NavLink {
-  label: string;
+  labelKey: string;
   fragment: string;
 }
 
 @Component({
   selector: 'app-root',
-  imports: [RouterLink, RouterOutlet, Icon],
+  imports: [RouterLink, RouterOutlet, Icon, TranslatePipe],
   templateUrl: './app.html',
   styleUrl: './app.scss',
 })
 export class App implements OnInit, OnDestroy {
+  protected readonly i18n = inject(I18nService);
+
   protected readonly menuOpen = signal(false);
   protected readonly scrolled = signal(false);
   protected readonly activeFragment = signal<string | null>(null);
 
   protected readonly navLinks: NavLink[] = [
-    { label: 'Who We Are', fragment: 'who-we-are' },
-    { label: 'Manage It All', fragment: 'manage-it-all' },
-    { label: 'Why zetalents', fragment: 'why-zetalents' },
-    { label: 'Products', fragment: 'products' },
-    { label: 'Clients', fragment: 'clients' },
+    { labelKey: 'nav.whoWeAre', fragment: 'who-we-are' },
+    { labelKey: 'nav.manageItAll', fragment: 'manage-it-all' },
+    { labelKey: 'nav.whyZetalents', fragment: 'why-zetalents' },
+    { labelKey: 'nav.products', fragment: 'products' },
+    { labelKey: 'nav.clients', fragment: 'clients' },
   ];
 
   private sectionObserver?: IntersectionObserver;
@@ -82,5 +86,9 @@ export class App implements OnInit, OnDestroy {
 
   protected closeMenu(): void {
     this.menuOpen.set(false);
+  }
+
+  protected toggleLang(): void {
+    this.i18n.toggle();
   }
 }

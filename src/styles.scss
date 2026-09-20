@@ -67,9 +67,10 @@
   --glow-brand: 0 0 0 1px rgba(242, 112, 32, 0.18), 0 0 34px -8px rgba(242, 112, 32, 0.45);
 
   /* ===== type ===== */
-  --font-sans: 'Cairo', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica,
-    Arial, sans-serif;
-  --font-mono: 'JetBrains Mono', ui-monospace, 'SFMono-Regular', Menlo, Consolas, monospace;
+  --font-sans: 'Montserrat', 'Cairo', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
+    Helvetica, Arial, sans-serif;
+  --font-mono: 'Montserrat', 'Cairo', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
+    Helvetica, Arial, sans-serif;
 
   /* ===== shape / motion =====
      NOTE: these used to be declared inside html[dir='rtl'], which left every
@@ -84,10 +85,10 @@
 }
 
 html[dir='rtl'] {
-  --font-sans: 'Cairo', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica,
-    Arial, sans-serif;
-  --font-mono: 'Cairo', 'JetBrains Mono', ui-monospace, 'SFMono-Regular', Menlo, Consolas,
-    monospace;
+  --font-sans: 'Montserrat', 'Cairo', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
+    Helvetica, Arial, sans-serif;
+  --font-mono: 'Montserrat', 'Cairo', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
+    Helvetica, Arial, sans-serif;
 }
 
 * {

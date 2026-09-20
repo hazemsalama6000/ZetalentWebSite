@@ -115,7 +115,14 @@ export class Home {
     { name: 'ESG Eslam Elshirby Group', logo: 'clients-images/Picture48.png' },
   ];
 
+  protected readonly clientRows: Client[][] = [];
+
   constructor() {
     this.allClients.push(...this.clientsRowOne, ...this.clientsRowTwo);
+    const rowCount = 5;
+    const perRow = Math.ceil(this.allClients.length / rowCount);
+    for (let i = 0; i < rowCount; i++) {
+      this.clientRows.push(this.allClients.slice(i * perRow, (i + 1) * perRow));
+    }
   }
 }

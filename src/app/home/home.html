@@ -209,25 +209,16 @@
       }
     </div>
   } @else {
-    <div class="marquee">
-      <div class="marquee-track marquee-left">
-        @for (client of clientsRowOne; track client.name + 'a') {
-          <span class="client-chip" [attr.title]="client.name"><img [src]="client.logo" [alt]="client.name" /></span>
-        }
-        @for (client of clientsRowOne; track client.name + 'b') {
-          <span class="client-chip" aria-hidden="true"><img [src]="client.logo" alt="" /></span>
-        }
-      </div>
-    </div>
-    <div class="marquee">
-      <div class="marquee-track marquee-right">
-        @for (client of clientsRowTwo; track client.name + 'a') {
-          <span class="client-chip" [attr.title]="client.name"><img [src]="client.logo" [alt]="client.name" /></span>
-        }
-        @for (client of clientsRowTwo; track client.name + 'b') {
-          <span class="client-chip" aria-hidden="true"><img [src]="client.logo" alt="" /></span>
-        }
-      </div>
+    <div class="clients-rows">
+      @for (row of clientRows; track $index) {
+        <div class="clients-row">
+          @for (client of row; track client.name) {
+            <span class="client-chip" [attr.title]="client.name">
+              <img [src]="client.logo" [alt]="client.name" loading="lazy" />
+            </span>
+          }
+        </div>
+      }
     </div>
   }
 </section>

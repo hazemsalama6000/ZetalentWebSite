@@ -715,16 +715,13 @@
   position: relative;
   padding: 104px 0 96px;
   overflow: hidden;
-  background:
-    radial-gradient(45% 55% at 92% 0%, rgba(255, 185, 138, 0.45), transparent 70%),
-    radial-gradient(40% 50% at 0% 100%, rgba(124, 50, 8, 0.55), transparent 70%),
-    var(--brand-surface);
+  background: #eceef1;
 
   &::before {
     content: "";
     position: absolute;
     inset: 0;
-    background-image: radial-gradient(rgba(255, 255, 255, 0.3) 1.2px, transparent 1.4px);
+    background-image: radial-gradient(rgba(0, 0, 0, 0.06) 1.2px, transparent 1.4px);
     background-size: 26px 26px;
     mask-image: radial-gradient(ellipse 70% 60% at 50% 45%, #000, transparent 75%);
     pointer-events: none;
@@ -872,7 +869,7 @@
 .clients-result-count,
 .clients-empty {
   margin: 0 0 20px;
-  color: rgba(255, 255, 255, 0.9);
+  color: var(--text-soft);
   font-size: 0.95rem;
 }
 .clients-empty {

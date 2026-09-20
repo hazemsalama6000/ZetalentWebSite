@@ -6,6 +6,26 @@ h1 {
   font-size: clamp(2rem, 4.2vw, 2.9rem);
   line-height: 1.08;
   max-width: 780px;
+  text-wrap: balance;
+}
+
+h1::after {
+  content: '';
+  display: block;
+  width: 56px;
+  height: 3px;
+  margin-top: 20px;
+  border-radius: 999px;
+  background: linear-gradient(90deg, var(--brand-500), var(--brand-300));
+}
+
+:host-context([dir='rtl']) h1::after {
+  background: linear-gradient(270deg, var(--brand-500), var(--brand-300));
+}
+
+/* Arabic needs more leading than the tight Latin display setting above. */
+:host-context([dir='rtl']) h1 {
+  line-height: 1.38;
 }
 
 .page-header-body {

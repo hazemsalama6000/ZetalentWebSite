@@ -13,14 +13,14 @@ export interface ModuleText {
 }
 
 export const MODULES: ModuleInfo[] = [
-  { slug: 'employees', order: 1, icon: 'users' },
-  { slug: 'payroll', order: 2, icon: 'wallet' },
-  { slug: 'self-service', order: 3, icon: 'smartphone' },
-  { slug: 'attendance', order: 4, icon: 'clock' },
-  { slug: 'business-trip', order: 5, icon: 'plane' },
-  { slug: 'performance', order: 6, icon: 'clipboardCheck' },
-  { slug: 'talent-development', order: 7, icon: 'graduationCap' },
-  { slug: 'talent-acquisition', order: 8, icon: 'search' },
-  { slug: 'career-path', order: 9, icon: 'trendingUp' },
-  { slug: 'succession-planning', order: 10, icon: 'userCheck' },
+  { slug: 'employees', order: 1, icon: 'mEmployees' },
+  { slug: 'payroll', order: 2, icon: 'mPayroll' },
+  { slug: 'self-service', order: 3, icon: 'mSelfService' },
+  { slug: 'attendance', order: 4, icon: 'mAttendance' },
+  { slug: 'business-trip', order: 5, icon: 'mBusinessTrip' },
+  { slug: 'performance', order: 6, icon: 'mPerformance' },
+  { slug: 'talent-development', order: 7, icon: 'mTalentDevelopment' },
+  { slug: 'talent-acquisition', order: 8, icon: 'mTalentAcquisition' },
+  { slug: 'career-path', order: 9, icon: 'mCareerPath' },
+  { slug: 'succession-planning', order: 10, icon: 'mSuccession' },
 ];

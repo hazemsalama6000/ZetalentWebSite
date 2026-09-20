@@ -25,7 +25,8 @@
   background: var(--paper-panel);
   border: 1px solid var(--line);
   border-radius: var(--radius-lg);
-  padding: 36px;
+  padding: 38px;
+  box-shadow: var(--shadow-md);
 }
 
 .form-label {
@@ -62,20 +63,26 @@
     font-family: var(--font-sans);
     font-size: 0.94rem;
     color: var(--text);
-    background: var(--paper);
+    background: var(--paper-neutral);
     border: 1px solid var(--line-strong);
     border-radius: var(--radius-sm);
-    padding: 12px 14px;
-    transition: border-color 0.15s ease;
+    padding: 13px 15px;
+    transition: border-color 0.18s ease, box-shadow 0.18s ease, background 0.18s ease;
     resize: vertical;
 
     &::placeholder {
       color: var(--text-faint);
     }
 
+    &:hover {
+      border-color: var(--brand-300);
+    }
+
     &:focus {
       outline: none;
-      border-color: var(--rust);
+      background: var(--paper-panel);
+      border-color: var(--brand-500);
+      box-shadow: 0 0 0 4px var(--brand-tint);
     }
   }
 }
@@ -100,14 +107,22 @@
 }
 
 .office-card {
-  background: var(--paper-dim);
+  background: var(--paper-panel);
   border: 1px solid var(--line);
   border-radius: var(--radius);
   padding: 26px 28px;
+  box-shadow: var(--shadow-sm);
+  transition: transform 0.25s var(--ease), border-color 0.25s ease, box-shadow 0.25s ease;
 
   h3 {
     font-size: 1.02rem;
     margin-bottom: 16px;
+  }
+
+  &:hover {
+    transform: translateY(-3px);
+    border-color: var(--line-brand);
+    box-shadow: var(--shadow-md);
   }
 }
 
@@ -122,8 +137,13 @@
     margin-top: 10px;
   }
 
+  a {
+    transition: color 0.15s ease;
+  }
+
   a:hover {
-    color: var(--rust-deep);
+    color: var(--brand-ink);
+    text-decoration: underline;
   }
 }
 
@@ -132,29 +152,42 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 30px;
-  height: 30px;
+  width: 32px;
+  height: 32px;
   border-radius: 50%;
-  background: var(--rust-soft);
-  color: var(--rust-deep);
+  background: var(--brand-100);
+  border: 1px solid var(--line-brand);
+  color: var(--brand-ink);
   flex-shrink: 0;
 }
 
+/* Email card is the accent card in the office stack. */
 .office-email {
-  background: var(--ink);
-  border-color: var(--ink);
+  background: var(--brand-surface);
+  border-color: transparent;
+  box-shadow: var(--shadow-brand);
 
   h3 {
-    color: var(--on-dark);
+    color: #fff;
   }
 
   .office-row {
-    color: var(--on-dark-soft);
+    color: rgba(255, 255, 255, 0.92);
+  }
+
+  .office-row a:hover {
+    color: #fff;
   }
 
   .office-icon {
-    background: var(--rust-soft-dark);
-    color: #e4a06e;
+    background: rgba(255, 255, 255, 0.18);
+    border-color: rgba(255, 255, 255, 0.3);
+    color: #fff;
+  }
+
+  &:hover {
+    border-color: transparent;
+    box-shadow: var(--shadow-brand-lg);
   }
 }
 

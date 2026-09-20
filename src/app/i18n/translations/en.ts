@@ -121,11 +121,17 @@ export const en = {
       eyebrow: '04 — Products & Services',
       title: '10 modules, one connected platform',
       lead: 'Every module shares one employee record, so data entered once flows across the platform. Select a module to see it in detail.',
+      openModule: 'Open module',
+      keyCapabilities: 'Key capabilities',
     },
     clients: {
       eyebrow: '05 — Our Clients',
       title: 'Organizations that trust zetalents',
       lead: 'Trusted by leading organizations across KSA and Egypt.',
+      countLabel: 'organizations trust zetalents',
+      searchPlaceholder: 'Search clients…',
+      results: 'matching clients',
+      empty: 'No clients match your search.',
     },
     support: {
       eyebrow: '06 — Technical Support',

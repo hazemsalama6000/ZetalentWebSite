@@ -41,21 +41,31 @@
   display: flex;
   align-items: center;
   gap: 12px;
-  padding: 11px 8px;
+  padding: 11px 10px;
   border-bottom: 1px solid var(--line);
-  transition: background 0.15s ease, padding-inline-start 0.15s ease;
+  border-radius: var(--radius-sm);
+  border-inline-start: 2px solid transparent;
+  transition: background 0.18s ease, border-color 0.18s ease, padding-inline-start 0.18s var(--ease);
 
   &:hover {
-    background: var(--paper-dim);
+    background: var(--brand-50);
+    padding-inline-start: 14px;
+
+    .switcher-title {
+      color: var(--text);
+    }
   }
 
   &.is-active {
+    background: var(--brand-100);
+    border-inline-start-color: var(--brand-500);
+
     .switcher-number {
-      color: var(--rust);
+      color: var(--brand-500);
     }
 
     .switcher-title {
-      color: var(--rust-deep);
+      color: var(--brand-ink);
       font-weight: 600;
     }
   }
@@ -90,20 +100,20 @@
 .detail-panel {
   display: flex;
   align-items: center;
-  gap: 14px;
+  gap: 16px;
   margin: 32px 0;
+  padding: 16px 20px;
+  background: linear-gradient(90deg, var(--brand-50), rgba(255, 248, 243, 0));
+  border-inline-start: 3px solid var(--brand-500);
+  border-radius: var(--radius-sm);
+}
+
+:host-context([dir='rtl']) .detail-panel {
+  background: linear-gradient(-90deg, var(--brand-50), rgba(255, 248, 243, 0));
 }
 
 .detail-icon {
-  --icon-size: 24px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 52px;
-  height: 52px;
-  border-radius: var(--radius);
-  background: var(--rust-soft);
-  color: var(--rust-deep);
+  --icon-size: 28px;
 }
 
 .detail-badge {
@@ -111,7 +121,7 @@
   font-size: 0.72rem;
   font-weight: 600;
   letter-spacing: 0.08em;
-  color: var(--text-faint);
+  color: var(--brand-ink);
 }
 
 .feature-list {
@@ -137,13 +147,21 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 20px;
-  height: 20px;
+  width: 22px;
+  height: 22px;
   margin-top: 1px;
   border-radius: 50%;
-  background: var(--rust-soft);
-  color: var(--rust-deep);
+  background: var(--brand-100);
+  border: 1px solid var(--line-brand);
+  color: var(--brand-ink);
   flex-shrink: 0;
+  transition: background 0.2s var(--ease), color 0.2s ease;
+}
+
+.feature-list li:hover .feature-check {
+  background: linear-gradient(135deg, var(--brand-500), var(--brand-700));
+  border-color: transparent;
+  color: #fff;
 }
 
 .detail-cta {
@@ -157,7 +175,7 @@
 
 .module-pager {
   border-top: 1px solid var(--line);
-  background: var(--paper-dim);
+  background: linear-gradient(180deg, var(--brand-50), var(--brand-100));
 }
 
 .pager-inner {
@@ -169,12 +187,16 @@
   display: flex;
   align-items: center;
   gap: 14px;
-  padding: 28px 0;
-  transition: background 0.15s ease;
+  padding: 30px 0;
+  transition: background 0.18s ease;
 
   &:hover {
     .pager-title {
-      color: var(--rust-deep);
+      color: var(--brand-ink);
+    }
+
+    .pager-arrow {
+      color: var(--brand-500);
     }
   }
 }
@@ -195,6 +217,7 @@
   display: flex;
   color: var(--text-faint);
   flex-shrink: 0;
+  transition: color 0.18s ease;
 }
 
 .pager-copy {

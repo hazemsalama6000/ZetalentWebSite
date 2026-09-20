@@ -46,23 +46,31 @@
   display: flex;
   align-items: baseline;
   gap: 10px;
-  padding: 7px 0;
+  padding: 8px 0;
   font-size: 0.85rem;
   color: var(--text-faint);
-  border-inline-start: 2px solid transparent;
-  padding-inline-start: 10px;
+  border-inline-start: 2px solid var(--line);
+  border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+  padding-inline-start: 12px;
   margin-inline-start: -12px;
-  transition: color 0.15s ease, border-color 0.15s ease;
+  transition: color 0.18s ease, border-color 0.18s ease, background 0.18s ease;
 
   &:hover {
     color: var(--text);
+    background: var(--brand-50);
+    border-inline-start-color: var(--brand-300);
   }
 
   &.is-active {
-    color: var(--rust-deep);
-    border-inline-start-color: var(--rust);
+    color: var(--brand-ink);
+    background: var(--brand-100);
+    border-inline-start-color: var(--brand-500);
     font-weight: 600;
   }
+}
+
+:host-context([dir='rtl']) .toc-row {
+  border-radius: var(--radius-sm) 0 0 var(--radius-sm);
 }
 
 .toc-number {
@@ -120,7 +128,7 @@
       width: 6px;
       height: 6px;
       border-radius: 50%;
-      background: var(--rust);
+      background: linear-gradient(135deg, var(--brand-500), var(--brand-700));
     }
   }
 
@@ -130,11 +138,15 @@
   }
 
   a {
-    color: var(--rust-deep);
+    color: var(--brand-ink);
     font-weight: 600;
+    text-decoration: underline;
+    text-decoration-color: var(--line-brand);
+    text-underline-offset: 3px;
+    transition: text-decoration-color 0.18s ease;
 
     &:hover {
-      text-decoration: underline;
+      text-decoration-color: var(--brand-500);
     }
   }
 }
@@ -143,17 +155,18 @@
   font-family: var(--font-mono);
   font-size: 0.85rem;
   font-weight: 600;
-  color: var(--rust);
+  color: var(--brand-500);
 }
 
 /* ---------- Contact section ---------- */
 
 .contact-card {
-  background: var(--paper-dim);
-  border: 1px solid var(--line);
+  background: var(--brand-50);
+  border: 1px solid var(--line-brand);
   border-radius: var(--radius);
-  padding: 22px 24px;
+  padding: 24px 26px;
   margin-top: 16px;
+  box-shadow: var(--shadow-xs);
 
   h3 {
     font-size: 0.98rem;
@@ -180,8 +193,9 @@
   width: 28px;
   height: 28px;
   border-radius: 50%;
-  background: var(--rust-soft);
-  color: var(--rust-deep);
+  background: var(--paper-panel);
+  border: 1px solid var(--line-brand);
+  color: var(--brand-ink);
   flex-shrink: 0;
 }
 
@@ -191,9 +205,11 @@
   gap: 6px;
   margin-top: 18px;
   font-weight: 600;
-  color: var(--rust-deep);
+  color: var(--brand-ink);
+  transition: gap 0.18s var(--ease);
 
   &:hover {
+    gap: 9px;
     text-decoration: underline;
   }
 }

@@ -1,4 +1,4 @@
-import { Component, computed, inject } from '@angular/core';
+import { Component, computed, inject, signal } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { MODULES } from '../modules-data';
 import { Reveal } from '../shared/reveal';
@@ -39,10 +39,25 @@ export class Home {
   protected readonly i18n = inject(I18nService);
 
   protected readonly modules = MODULES;
+  protected readonly activeSlug = signal(MODULES[0].slug);
+  protected readonly activeModule = computed(() => MODULES.find((m) => m.slug === this.activeSlug()) ?? MODULES[0]);
+  protected readonly activeText = computed(() =>
+    this.i18n.raw<{ navTitle: string; badge: string; heroTitle: string; tagline: string; features: string[] }>(
+      `modules.${this.activeSlug()}`,
+    ),
+  );
+  protected readonly progress = computed(() => (this.activeModule().order / MODULES.length) * 100);
 
   protected readonly heroStats = computed(() => this.i18n.list<StatItem>('home.stats'));
   protected readonly audienceCards = computed(() => this.i18n.list<AudienceCard>('home.audience'));
   protected readonly featureCards = computed(() => this.i18n.list<FeatureCard>('home.features'));
+
+  protected readonly allClients: Client[] = [];
+  protected readonly query = signal('');
+  protected readonly filteredClients = computed(() => {
+    const q = this.query().trim().toLowerCase();
+    return q ? this.allClients.filter((c) => c.name.toLowerCase().includes(q)) : this.allClients;
+  });
 
   protected moduleText(slug: string) {
     return this.i18n.raw<{ navTitle: string; badge: string }>(`modules.${slug}`);
@@ -99,4 +114,8 @@ export class Home {
     { name: 'G-Group', logo: 'clients-images/Picture47.png' },
     { name: 'ESG Eslam Elshirby Group', logo: 'clients-images/Picture48.png' },
   ];
+
+  constructor() {
+    this.allClients.push(...this.clientsRowOne, ...this.clientsRowTwo);
+  }
 }

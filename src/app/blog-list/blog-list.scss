@@ -23,25 +23,46 @@
   flex-direction: column;
   background: var(--paper-panel);
   border: 1px solid var(--line);
-  border-radius: var(--radius);
+  border-radius: var(--radius-lg);
   overflow: hidden;
-  transition: transform 0.2s var(--ease), border-color 0.2s ease, box-shadow 0.2s ease;
+  box-shadow: var(--shadow-sm);
+  transition: transform 0.28s var(--ease), border-color 0.28s ease, box-shadow 0.28s ease;
 
   &:hover {
-    transform: translateY(-3px);
-    border-color: var(--line-strong);
-    box-shadow: 0 16px 32px -20px rgba(21, 19, 15, 0.35);
+    transform: translateY(-5px);
+    border-color: var(--line-brand);
+    box-shadow: var(--shadow-lg), var(--glow-brand);
 
     .post-cta-icon {
       transform: translate(2px, -2px);
+    }
+
+    .post-cta {
+      gap: 9px;
     }
   }
 }
 
 .post-cover {
-  height: 180px;
+  position: relative;
+  height: 190px;
   overflow: hidden;
-  background: linear-gradient(135deg, var(--ink) 0%, var(--rust-deep) 150%);
+  background: var(--brand-surface);
+
+  /* Warm brand veil over the photo, lifting on hover. */
+  &::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(160deg, rgba(242, 112, 32, 0.28), rgba(124, 50, 8, 0.32));
+    opacity: 1;
+    transition: opacity 0.3s var(--ease);
+    pointer-events: none;
+  }
+}
+
+.post-card:hover .post-cover::after {
+  opacity: 0.25;
 }
 
 .post-cover-image {
@@ -67,11 +88,15 @@
 
 .post-category {
   font-family: var(--font-mono);
-  font-size: 0.7rem;
+  font-size: 0.68rem;
   font-weight: 600;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: var(--rust-deep);
+  color: var(--brand-ink);
+  background: var(--brand-100);
+  border: 1px solid var(--line-brand);
+  border-radius: var(--radius-pill);
+  padding: 5px 12px;
 }
 
 .post-body h2 {
@@ -107,10 +132,12 @@
   display: flex;
   align-items: center;
   gap: 6px;
-  margin-top: 10px;
+  margin-top: auto;
+  padding-top: 14px;
   font-weight: 600;
   font-size: 0.9rem;
-  color: var(--rust-deep);
+  color: var(--brand-ink);
+  transition: gap 0.2s var(--ease);
 }
 
 .post-cta-icon {

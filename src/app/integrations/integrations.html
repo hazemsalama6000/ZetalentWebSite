@@ -1,0 +1,116 @@
+<section class="hero">
+  <div class="shell hero-grid">
+    <div class="hero-copy">
+      <span class="eyebrow-pill" appReveal><span class="dot"></span>{{ 'integrations.eyebrow' | translate }}</span>
+      <h1 appReveal [revealDelay]="70">{{ 'integrations.heading' | translate }}</h1>
+      <p class="lead" appReveal [revealDelay]="140">{{ 'integrations.tagline' | translate }}</p>
+
+      @for (c of currentList(); track c.name) {
+        <div class="detail" appReveal [revealDelay]="210" (mouseenter)="pause(true)" (mouseleave)="pause(false)">
+          <div class="detail-head">
+            <span class="detail-icon"><app-icon [iconName]="c.icon" /></span>
+            <div>
+              <span class="live"><span class="pulse"></span>{{ 'integrations.live' | translate }}</span>
+              <h2>{{ c.name }}</h2>
+            </div>
+          </div>
+          <p class="detail-desc">{{ c.desc }}</p>
+          <span class="detail-label">{{ 'integrations.capabilities' | translate }}</span>
+          <div class="tags">
+            @for (tag of c.tags; track tag) {
+              <span class="tag">{{ tag }}</span>
+            }
+          </div>
+          <div class="progress"><span></span></div>
+        </div>
+      }
+    </div>
+
+    <div class="orbit" appReveal [revealDelay]="150" (mouseenter)="pause(true)" (mouseleave)="pause(false)">
+      <span class="orbit-ring"></span>
+      <span class="orbit-ring orbit-ring-inner"></span>
+
+      @for (item of items(); track item.name; let i = $index) {
+        <span class="spoke" [class.is-active]="active() === i" [style.--a.deg]="i * angleStep() - 90"></span>
+      }
+
+      <div class="core">
+        <img src="zeLogo2.png" alt="zetalents" />
+      </div>
+
+      @for (item of items(); track item.name; let i = $index) {
+        <button
+          type="button"
+          class="node"
+          [class.is-active]="active() === i"
+          [style.--a.deg]="i * angleStep() - 90"
+          [attr.aria-label]="item.name"
+          [attr.aria-pressed]="active() === i"
+          (click)="select(i)"
+          (focus)="select(i)"
+        >
+          <span class="node-bubble"><app-icon [iconName]="item.icon" /></span>
+          <span class="node-name">{{ item.name }}</span>
+        </button>
+      }
+    </div>
+  </div>
+</section>
+
+<section class="list-section">
+  <div class="shell">
+    <h2 class="section-title" appReveal>{{ 'integrations.listTitle' | translate }}</h2>
+    <div class="bento">
+      @for (item of items(); track item.name; let i = $index) {
+        <button
+          type="button"
+          class="tile"
+          [class.is-active]="active() === i"
+          appReveal
+          [revealDelay]="i * 70"
+          (click)="select(i)"
+        >
+          <span class="tile-icon"><app-icon [iconName]="item.icon" /></span>
+          <span class="tile-name">{{ item.name }}</span>
+          <span class="tile-desc">{{ item.desc }}</span>
+          <span class="tile-tags">
+            @for (tag of item.tags; track tag) {
+              <span class="tag">{{ tag }}</span>
+            }
+          </span>
+        </button>
+      }
+      <div class="tile tile-more" appReveal [revealDelay]="350">
+        <span class="tile-icon"><app-icon iconName="globe" /></span>
+        <span class="tile-name">{{ 'integrations.more' | translate }}</span>
+        <a routerLink="/contact" class="tile-link">
+          {{ 'integrations.cta' | translate }}
+          <app-icon [iconName]="i18n.mirrorIcon('arrowRight')" />
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="steps-section">
+  <div class="shell">
+    <h2 class="section-title" appReveal>{{ 'integrations.stepsTitle' | translate }}</h2>
+    <div class="steps">
+      @for (step of steps(); track step.title; let i = $index) {
+        <div class="step" appReveal [revealDelay]="i * 100">
+          <span class="step-num">0{{ i + 1 }}</span>
+          <span class="step-icon"><app-icon [iconName]="stepIcons[i]" /></span>
+          <h3>{{ step.title }}</h3>
+          <p>{{ step.desc }}</p>
+        </div>
+      }
+    </div>
+
+    <div class="cta" appReveal>
+      <div>
+        <h3>{{ 'integrations.ctaText' | translate }}</h3>
+      </div>
+      <a class="btn btn-on-dark" routerLink="/contact">{{ 'integrations.cta' | translate }}</a>
+    </div>
+  </div>
+</section>

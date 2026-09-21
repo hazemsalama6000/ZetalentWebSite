@@ -15,6 +15,7 @@
           (click)="closeMenu()"
         >{{ link.labelKey | translate }}</a>
       }
+      <a routerLink="/integrations" (click)="closeMenu()">{{ 'nav.integrations' | translate }}</a>
       <a routerLink="/blog" (click)="closeMenu()">{{ 'nav.blog' | translate }}</a>
       <a class="btn btn-primary btn-sm nav-cta" routerLink="/contact" (click)="closeMenu()">{{ 'common.requestDemo' | translate }}</a>
       <button
@@ -64,6 +65,7 @@
 
     <nav class="footer-links" aria-label="Company">
       <span class="footer-links-label">{{ 'footer.companyLabel' | translate }}</span>
+      <a routerLink="/integrations">{{ 'nav.integrations' | translate }}</a>
       <a routerLink="/blog">{{ 'nav.blog' | translate }}</a>
       <a routerLink="/contact">{{ 'nav.contact' | translate }}</a>
       <a routerLink="/privacy-policy">{{ 'nav.privacyPolicy' | translate }}</a>

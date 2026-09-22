@@ -1,8 +1,10 @@
-import { Component, computed, inject, signal } from '@angular/core';
+import { Component, computed, inject } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { MODULES } from '../modules-data';
 import { Reveal } from '../shared/reveal';
-import { CountUp } from '../shared/count-up';
+import { Tilt } from '../shared/tilt';
+import { DecodeText } from '../shared/decode-text';
+import { Spotlight } from '../shared/spotlight';
 import { Icon } from '../shared/icon';
 import { I18nService } from '../i18n/i18n.service';
 import { TranslatePipe } from '../i18n/translate.pipe';
@@ -31,7 +33,7 @@ interface Client {
 
 @Component({
   selector: 'app-home',
-  imports: [RouterLink, Reveal, CountUp, Icon, TranslatePipe],
+  imports: [RouterLink, Reveal, Tilt, DecodeText, Spotlight, Icon, TranslatePipe],
   templateUrl: './home.html',
   styleUrl: './home.scss',
 })
@@ -39,25 +41,19 @@ export class Home {
   protected readonly i18n = inject(I18nService);
 
   protected readonly modules = MODULES;
-  protected readonly activeSlug = signal(MODULES[0].slug);
-  protected readonly activeModule = computed(() => MODULES.find((m) => m.slug === this.activeSlug()) ?? MODULES[0]);
-  protected readonly activeText = computed(() =>
-    this.i18n.raw<{ navTitle: string; badge: string; heroTitle: string; tagline: string; features: string[] }>(
-      `modules.${this.activeSlug()}`,
-    ),
-  );
-  protected readonly progress = computed(() => (this.activeModule().order / MODULES.length) * 100);
+  protected readonly particles = Array.from({ length: 18 }, (_, i) => ({
+    x: (i * 37) % 100,
+    y: (i * 53 + 11) % 100,
+    d: -((i * 7) % 11),
+    t: 9 + (i % 6) * 2,
+  }));
 
+  protected readonly statIcons = ['calendar', 'globe', 'cpu', 'cloud'] as const;
   protected readonly heroStats = computed(() => this.i18n.list<StatItem>('home.stats'));
   protected readonly audienceCards = computed(() => this.i18n.list<AudienceCard>('home.audience'));
   protected readonly featureCards = computed(() => this.i18n.list<FeatureCard>('home.features'));
 
   protected readonly allClients: Client[] = [];
-  protected readonly query = signal('');
-  protected readonly filteredClients = computed(() => {
-    const q = this.query().trim().toLowerCase();
-    return q ? this.allClients.filter((c) => c.name.toLowerCase().includes(q)) : this.allClients;
-  });
 
   protected moduleText(slug: string) {
     return this.i18n.raw<{ navTitle: string; badge: string }>(`modules.${slug}`);
@@ -119,10 +115,12 @@ export class Home {
 
   constructor() {
     this.allClients.push(...this.clientsRowOne, ...this.clientsRowTwo);
-    const rowCount = 5;
+    const rowCount = 3;
     const perRow = Math.ceil(this.allClients.length / rowCount);
     for (let i = 0; i < rowCount; i++) {
-      this.clientRows.push(this.allClients.slice(i * perRow, (i + 1) * perRow));
+      const row = this.allClients.slice(i * perRow, (i + 1) * perRow);
+      // Duplicated so the marquee can loop seamlessly at -50%.
+      this.clientRows.push([...row, ...row]);
     }
   }
 }

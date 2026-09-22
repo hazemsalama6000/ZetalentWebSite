@@ -40,13 +40,13 @@ export const en = {
       { value: '100%', label: 'Cloud-hosted, web-based platform' },
     ],
     whoWeAre: {
-      eyebrow: '01 — Who We Are',
+      eyebrow: 'Who We Are',
       title: 'A regional HCIS specialist',
       p1: '<strong>zetalents</strong>, headquartered in Riyadh, Saudi Arabia, has been operating since 2016, delivering comprehensive Human Capital Information Systems to clients across Saudi Arabia, Egypt, and the wider MENA region.',
       p2: '<strong>zetalents HCIS</strong> is a comprehensive, cloud-based Human Capital Management platform that streamlines HR processes end to end — applicant tracking, benefit programs, workforce training and development, payroll, and evolving governmental regulations, all built for both employee satisfaction and operational efficiency.',
     },
     manage: {
-      eyebrow: '02 — Manage It All',
+      eyebrow: 'Manage It All',
       title: 'One system, total control',
       lead: 'From individual employee records to company-wide analytics, zetalents delivers complete HR management across every level — country, company, and currency.',
     },
@@ -68,7 +68,7 @@ export const en = {
       },
     ],
     why: {
-      eyebrow: '03 — Why zetalents',
+      eyebrow: 'Why zetalents',
       title: 'What sets us apart',
     },
     features: [
@@ -119,14 +119,14 @@ export const en = {
       },
     ],
     products: {
-      eyebrow: '04 — Products & Services',
+      eyebrow: 'Products & Services',
       title: '10 modules, one connected platform',
       lead: 'Every module shares one employee record, so data entered once flows across the platform. Select a module to see it in detail.',
       openModule: 'Open module',
       keyCapabilities: 'Key capabilities',
     },
     clients: {
-      eyebrow: '05 — Our Clients',
+      eyebrow: 'Our Clients',
       title: 'Organizations that trust zetalents',
       lead: 'Trusted by leading organizations across KSA and Egypt.',
       countLabel: 'organizations trust zetalents',
@@ -135,7 +135,7 @@ export const en = {
       empty: 'No clients match your search.',
     },
     support: {
-      eyebrow: '06 — Technical Support',
+      eyebrow: 'Technical Support',
       title: 'Here when you need us',
       body: 'Our customer support organization includes highly trained professionals, all of whom have the broad knowledge base required to resolve customer inquiries accurately and quickly. Our support staff have expert understanding of all zetalents HCIS applications, Microsoft technology, and operating systems.',
       cta: 'Contact Us',

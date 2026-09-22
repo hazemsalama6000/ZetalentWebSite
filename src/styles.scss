@@ -640,3 +640,36 @@ html[dir='rtl'] .section-head h2::after {
     animation: none;
   }
 }
+
+/* -- smart motion: tilt spotlight, hero image life -- */
+
+.tilt {
+  transform-style: preserve-3d;
+  will-change: transform;
+}
+
+.tilt-glow {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0;
+  border-radius: inherit;
+  background: radial-gradient(360px circle at var(--mx, 50%) var(--my, 50%), rgba(255, 255, 255, 0.55), transparent 60%);
+  mix-blend-mode: soft-light;
+  transition: opacity 0.3s ease;
+
+  .tilt:hover > & {
+    opacity: 1;
+  }
+}
+
+@keyframes kenburns {
+  from { transform: scale(1.12); }
+  to { transform: scale(1); }
+}
+
+@keyframes orb-float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-12px); }
+}
+

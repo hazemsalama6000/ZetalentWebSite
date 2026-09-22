@@ -1,9 +1,15 @@
 <!-- Hero -->
 <section class="hero section-brand" id="top">
+  <div class="hero-bg" aria-hidden="true">
+    <span class="hero-blob hero-blob-a"></span>
+    <span class="hero-blob hero-blob-b"></span>
+    <span class="hero-blob hero-blob-c"></span>
+    <span class="hero-dots"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span>
+  </div>
   <div class="shell">
     <div class="hero-top">
       <div class="hero-copy">
-        <span class="eyebrow" appReveal>{{ 'home.hero.eyebrow' | translate }}</span>
+        <span class="eyebrow hero-eyebrow" appReveal [appDecode]="'home.hero.eyebrow' | translate"></span>
         <h1 appReveal [revealDelay]="90">{{ 'home.hero.title' | translate }}</h1>
         <p class="lead" appReveal [revealDelay]="180">
           {{ 'home.hero.lead' | translate }}
@@ -15,8 +21,11 @@
       </div>
 
       <div class="hero-media" appReveal [revealDelay]="200">
-        <div class="hero-media-frame">
-          <img src="images/hero-cover.jpg" [alt]="'home.hero.imageAlt' | translate" width="1792" height="896" />
+        <div class="hero-media-frame" appTilt="4">
+          <img src="images/hero-cover.jpg" [alt]="'home.hero.imageAlt' | translate" width="1792" height="896" fetchpriority="high" />
+          <span class="hero-orb hero-orb-a" aria-hidden="true"><app-icon iconName="trendingUp" /></span>
+          <span class="hero-orb hero-orb-b" aria-hidden="true"><app-icon iconName="shieldCheck" /></span>
+          <span class="hero-orb hero-orb-c" aria-hidden="true"><app-icon iconName="users" /></span>
         </div>
       </div>
     </div>
@@ -34,6 +43,12 @@
 
 <!-- Who We Are -->
 <section class="section who-we-are" id="who-we-are">
+  <div class="who-bg" aria-hidden="true">
+    <span class="who-photo who-photo-a"><img src="images/hero-cover.jpg" alt="" loading="lazy" /></span>
+    <span class="who-photo who-photo-b"><img src="images/blog/hr-technology-trends.jpg" alt="" loading="lazy" /></span>
+    <span class="who-photo who-photo-c"><img src="images/blog/hr-challenges-small-business.jpg" alt="" loading="lazy" /></span>
+    <span class="who-photo who-photo-d"><img src="images/blog/payroll-automation.jpg" alt="" loading="lazy" /></span>
+  </div>
   <div class="shell split">
     <div class="split-copy" appReveal>
       <span class="eyebrow">{{ 'home.whoWeAre.eyebrow' | translate }}</span>
@@ -42,12 +57,13 @@
       <p [innerHTML]="'home.whoWeAre.p2' | translate"></p>
     </div>
 
-    <div class="stat-bento" appReveal [revealDelay]="120">
+    <div class="stat-panel" appReveal [revealDelay]="120">
       @for (stat of heroStats(); track stat.label; let i = $index) {
-        <div class="stat-card" [class.is-featured]="i === 0">
-          <span class="stat-index">{{ (i + 1).toString().padStart(2, '0') }}</span>
+        <div class="stat-row" [class.is-featured]="i === 0" appReveal [revealDelay]="200 + i * 110">
+          <span class="stat-icon"><app-icon [iconName]="statIcons[i]" /></span>
           <span class="stat-value">{{ stat.value }}</span>
           <span class="stat-label">{{ stat.label }}</span>
+          <span class="stat-index">{{ (i + 1).toString().padStart(2, '0') }}</span>
         </div>
       }
     </div>
@@ -55,7 +71,15 @@
 </section>
 
 <!-- Manage It All -->
-<section class="section section-panel manage" id="manage-it-all">
+<section class="section manage" id="manage-it-all" appSpotlight>
+  <div class="manage-bg" aria-hidden="true">
+    <span class="manage-grid"></span>
+    <span class="manage-aurora manage-aurora-a"></span>
+    <span class="manage-aurora manage-aurora-b"></span>
+    <span class="manage-spot"></span>
+    <span class="manage-particles"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span>
+  </div>
+
   <div class="shell">
     <div class="section-head" appReveal>
       <span class="eyebrow">{{ 'home.manage.eyebrow' | translate }}</span>
@@ -66,11 +90,16 @@
     </div>
 
     <div class="audience-grid">
+      <!-- Data flowing between the three audiences. -->
+      <span class="audience-flow" aria-hidden="true"><i></i></span>
+
       @for (card of audienceCards(); track card.title; let i = $index) {
-        <div class="audience-card" [class.is-accent]="$last" appReveal [revealDelay]="i * 100">
+        <div class="audience-card" appTilt="5" [class.is-accent]="$last" appReveal [revealDelay]="i * 120">
+          <span class="audience-num">{{ (i + 1).toString().padStart(2, '0') }}</span>
           <span class="card-icon"><app-icon [iconName]="card.icon" /></span>
           <h3>{{ card.title }}</h3>
           <p>{{ card.description }}</p>
+          <span class="audience-bar"></span>
         </div>
       }
     </div>
@@ -78,7 +107,17 @@
 </section>
 
 <!-- Why zetalents -->
-<section class="section section-brand why" id="why-zetalents">
+<section class="section section-brand why" id="why-zetalents" appSpotlight>
+  <div class="why-bg" aria-hidden="true">
+    <span class="why-dots"></span>
+    <span class="why-dots why-dots-lit"></span>
+    <span class="why-ring why-ring-a"><i></i></span>
+    <span class="why-ring why-ring-b"><i></i></span>
+    <span class="why-ring why-ring-c"><i></i></span>
+    <span class="why-beam why-beam-a"></span>
+    <span class="why-beam why-beam-b"></span>
+  </div>
+
   <div class="shell">
     <div class="section-head" appReveal>
       <span class="eyebrow">{{ 'home.why.eyebrow' | translate }}</span>
@@ -87,10 +126,12 @@
 
     <div class="feature-grid">
       @for (card of featureCards(); track card.title; let i = $index) {
-        <div class="feature-card" appReveal [revealDelay]="(i % 3) * 90">
+        <div class="feature-card" appTilt="4" appReveal [revealDelay]="(i % 3) * 90">
+          <span class="feature-index">{{ (i + 1).toString().padStart(2, '0') }}</span>
           <span class="card-icon"><app-icon [iconName]="card.icon" /></span>
           <h3>{{ card.title }}</h3>
           <p>{{ card.description }}</p>
+          <span class="feature-edge"></span>
         </div>
       }
     </div>
@@ -98,9 +139,20 @@
 </section>
 
 <!-- Products & Services -->
-<section class="section products" id="products">
+<section class="section products" id="products" appSpotlight>
+  <div class="products-bg" aria-hidden="true">
+    <span class="products-blob pb-a"></span>
+    <span class="products-blob pb-b"></span>
+    <span class="products-grid"></span>
+    <span class="products-scan"></span>
+    <span class="products-spot"></span>
+    @for (p of particles; track $index) {
+      <span class="products-dot" [style.left.%]="p.x" [style.top.%]="p.y" [style.animation-delay.s]="p.d" [style.animation-duration.s]="p.t"></span>
+    }
+  </div>
+
   <div class="shell">
-    <div class="section-head" appReveal>
+    <div class="section-head products-head" appReveal>
       <span class="eyebrow">{{ 'home.products.eyebrow' | translate }}</span>
       <h2>{{ 'home.products.title' | translate }}</h2>
       <p class="section-lead">
@@ -108,119 +160,51 @@
       </p>
     </div>
 
-    <div class="module-explorer" appReveal>
-      <div class="module-tabs" role="tablist" [attr.aria-label]="'home.products.title' | translate">
-        @for (mod of modules; track mod.slug) {
-          <button
-            type="button"
-            role="tab"
-            class="module-tab"
-            [class.is-active]="mod.slug === activeSlug()"
-            [attr.aria-selected]="mod.slug === activeSlug()"
-            (click)="activeSlug.set(mod.slug)"
-            (mouseenter)="activeSlug.set(mod.slug)"
-            (focus)="activeSlug.set(mod.slug)"
-          >
-            <span class="module-tab-icon"><app-icon [iconName]="mod.icon" /></span>
-            <span class="module-tab-title">{{ moduleText(mod.slug)?.navTitle }}</span>
-            <span class="module-tab-number">{{ mod.order.toString().padStart(2, '0') }}</span>
-          </button>
-        }
-      </div>
-
-      <article class="module-panel" role="tabpanel">
-        <div class="module-panel-glow" aria-hidden="true"></div>
-        @if (activeText(); as t) {
-          @for (slug of [activeSlug()]; track slug) {
-            <div class="module-panel-body">
-              <div class="module-panel-top">
-                <span class="module-panel-icon module-icon-lg"><app-icon [iconName]="activeModule().icon" /></span>
-                <span class="module-panel-badge">{{ t.badge }}</span>
-                <span class="module-panel-count">{{ activeModule().order.toString().padStart(2, '0') }} / {{ modules.length }}</span>
-              </div>
-              <h3 class="module-panel-title">{{ t.navTitle }}</h3>
-              <p class="module-panel-tagline">{{ t.tagline }}</p>
-
-              <div class="module-panel-label">{{ 'home.products.keyCapabilities' | translate }}</div>
-              <ul class="module-panel-features">
-                @for (f of t.features.slice(0, 6); track f) {
-                  <li><app-icon iconName="check" />{{ f }}</li>
-                }
-              </ul>
-
-              <div class="module-panel-foot">
-                <div class="module-panel-progress"><span [style.width.%]="progress()"></span></div>
-                <a class="btn btn-primary" [routerLink]="['/modules', activeSlug()]">
-                  {{ 'home.products.openModule' | translate }}
-                  <app-icon [iconName]="i18n.mirrorIcon('arrowRight')" />
-                </a>
-              </div>
-            </div>
-          }
-        }
-      </article>
+    <div class="module-cloud">
+      @for (mod of modules; track mod.slug) {
+        <a class="module-tile" [routerLink]="['/modules', mod.slug]" appReveal [style.--i]="$index">
+          <span class="module-tile-num">{{ mod.order.toString().padStart(2, '0') }}</span>
+          <span class="module-tile-icon"><app-icon [iconName]="mod.icon" /></span>
+          <span class="module-tile-title">{{ moduleText(mod.slug)?.navTitle }}</span>
+          <span class="module-tile-arrow"><app-icon [iconName]="i18n.mirrorIcon('arrowRight')" /></span>
+        </a>
+      }
     </div>
   </div>
 </section>
 
+
 <!-- Clients -->
-<section class="clients-section" id="clients">
-  <div class="shell section-head-wrap">
-    <div class="section-head" appReveal>
+<section class="clients-section" id="clients" appSpotlight>
+  <div class="clients-bg" aria-hidden="true">
+    <span class="clients-blob blob-a"></span>
+    <span class="clients-blob blob-b"></span>
+    <span class="clients-blob blob-c"></span>
+    <span class="clients-grid-lines"></span>
+    <span class="clients-spot"></span>
+  </div>
+
+  <div class="shell">
+    <div class="section-head clients-head" appReveal>
       <span class="eyebrow">{{ 'home.clients.eyebrow' | translate }}</span>
       <h2>{{ 'home.clients.title' | translate }}</h2>
       <p class="section-lead">{{ 'home.clients.lead' | translate }}</p>
     </div>
-
-    <div class="clients-toolbar" appReveal>
-      <div class="clients-count">
-        <span class="clients-count-value" [appCountUp]="allClients.length + '+'">{{ allClients.length }}+</span>
-        <span class="clients-count-label">{{ 'home.clients.countLabel' | translate }}</span>
-      </div>
-      <label class="clients-search">
-        <app-icon iconName="search" />
-        <input
-          type="search"
-          [value]="query()"
-          (input)="query.set($any($event.target).value)"
-          [placeholder]="'home.clients.searchPlaceholder' | translate"
-          [attr.aria-label]="'home.clients.searchPlaceholder' | translate"
-        />
-      </label>
-    </div>
   </div>
 
-  @if (query().trim()) {
-    <div class="shell">
-      @if (filteredClients().length) {
-        <p class="clients-result-count" aria-live="polite">
-          {{ filteredClients().length }} {{ 'home.clients.results' | translate }}
-        </p>
-        <div class="clients-grid">
-          @for (client of filteredClients(); track client.name) {
-            <figure class="client-card">
-              <span class="client-card-logo"><img [src]="client.logo" [alt]="client.name" loading="lazy" /></span>
-              <figcaption>{{ client.name }}</figcaption>
-            </figure>
-          }
-        </div>
-      } @else {
-        <p class="clients-empty" aria-live="polite">{{ 'home.clients.empty' | translate }}</p>
-      }
-    </div>
-  } @else {
-    <div class="clients-rows">
-      @for (row of clientRows; track $index) {
-        <div class="clients-row">
-          @for (client of row; track client.name) {
-            <span class="client-chip" [attr.title]="client.name">
+  <div class="clients-stage" appReveal>
+    @for (row of clientRows; track $index) {
+      <div class="clients-marquee" [class.reverse]="$index % 2 === 1" [style.--speed]="60 + $index * 12 + 's'">
+        <div class="clients-track">
+          @for (client of row; track $index) {
+            <span class="client-chip" [attr.title]="client.name" [attr.aria-hidden]="$index >= row.length / 2 ? 'true' : null">
               <img [src]="client.logo" [alt]="client.name" loading="lazy" />
             </span>
           }
         </div>
-      }
-    </div>
-  }
+      </div>
+    }
+  </div>
 </section>
 
 <!-- Technical Support -->

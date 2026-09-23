@@ -27,6 +27,7 @@ export class App implements OnInit, OnDestroy {
     { labelKey: 'nav.whoWeAre', fragment: 'who-we-are' },
     { labelKey: 'nav.manageItAll', fragment: 'manage-it-all' },
     { labelKey: 'nav.whyZetalents', fragment: 'why-zetalents' },
+    { labelKey: 'nav.ai', fragment: 'ai' },
     { labelKey: 'nav.products', fragment: 'products' },
     { labelKey: 'nav.clients', fragment: 'clients' },
   ];

@@ -40,6 +40,8 @@ export const ICON_PATHS: Record<string, string> = {
   mTalentAcquisition: '<circle cx="11" cy="11" r="6.5" fill="currentColor" fill-opacity=".2"/><path d="m15.8 15.8 5.7 5.7"/><circle cx="11" cy="9.2" r="1.9"/><path d="M7.6 14.2a3.6 3.6 0 0 1 6.8 0"/><circle cx="3.2" cy="4" r=".9"/><circle cx="20" cy="4.5" r=".9"/><circle cx="3" cy="12" r=".9"/>',
   mCareerPath: '<circle cx="13.5" cy="3.8" r="1.8" fill="currentColor" fill-opacity=".2"/><path d="m12 7.5-2.2 4.5 3 2.5.5 5M12 7.5l3 2.2 2.3.3M10.2 9.5l-3.2 1.8"/><rect x="3" y="12" width="4.5" height="3.5" rx=".8" fill="currentColor" fill-opacity=".2"/><circle cx="6" cy="20" r="1.1" fill="currentColor"/><circle cx="10" cy="19" r=".9"/><circle cx="14" cy="18.5" r=".8"/><circle cx="18" cy="15.5" r=".8"/><circle cx="20.5" cy="12" r=".7"/>',
   mSuccession: '<circle cx="6.5" cy="4.5" r="2" fill="currentColor" fill-opacity=".2"/><path d="m6.5 8-2 4-2 1.5M6.5 8l2.2 3.5 2.3.8M4.5 12l1.5 3v6M8 13l1.5 3.2V21M6 15l-2.5 6"/><path d="M12 21h3.5v-4H19v-4h3v8" fill="currentColor" fill-opacity=".2"/><path d="M12 21h10M19 9V2.5M16.5 5 19 2.5 21.5 5"/>',
+  sparkles: '<path d="M11.02 2.35a.5.5 0 0 1 .96 0l1.2 4.16a2 2 0 0 0 1.31 1.31l4.16 1.2a.5.5 0 0 1 0 .96l-4.16 1.2a2 2 0 0 0-1.31 1.31l-1.2 4.16a.5.5 0 0 1-.96 0l-1.2-4.16a2 2 0 0 0-1.31-1.31l-4.16-1.2a.5.5 0 0 1 0-.96l4.16-1.2a2 2 0 0 0 1.31-1.31z"/><path d="M19 15.5v3M17.5 17h3"/><path d="M4.5 17v2.5M3.25 18.25h2.5"/>',
+  bot: '<path d="M12 8V4H8"/><rect x="4" y="8" width="16" height="12" rx="2"/><path d="M2 14h2M20 14h2M9 13v2M15 13v2"/>',
 };
 
 export function iconMarkup(name: string): string {

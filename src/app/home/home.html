@@ -138,6 +138,45 @@
   </div>
 </section>
 
+<!-- AI -->
+<section class="section ai" id="ai" appSpotlight>
+  <div class="ai-bg" aria-hidden="true">
+    <span class="ai-overlay"></span>
+    <span class="ai-scan"></span>
+    <span class="ai-orb"><app-icon iconName="sparkles" /></span>
+    <span class="ai-particles"><i></i><i></i><i></i><i></i><i></i><i></i></span>
+  </div>
+
+  <div class="shell">
+    <div class="section-head" appReveal>
+      <span class="eyebrow on-dark">{{ 'home.ai.eyebrow' | translate }}</span>
+      <h2>{{ 'home.ai.title' | translate }}</h2>
+      <p class="section-lead">
+        {{ 'home.ai.lead' | translate }}
+      </p>
+    </div>
+
+    <div class="ai-diagram" appReveal [revealDelay]="80">
+      <div class="ai-diagram-core" aria-hidden="true">
+        <span class="ai-diagram-core-ring ai-diagram-core-ring-a"></span>
+        <span class="ai-diagram-core-ring ai-diagram-core-ring-b"></span>
+        <span class="ai-diagram-core-pulse"></span>
+        <span class="ai-diagram-core-icon"><app-icon iconName="sparkles" /></span>
+      </div>
+
+      @for (item of aiCapabilities(); track item.title; let i = $index) {
+        <div class="ai-diagram-node" appReveal [revealDelay]="180 + i * 120">
+          <span class="ai-diagram-node-icon"><app-icon [iconName]="item.icon" /></span>
+          <div class="ai-diagram-node-copy">
+            <h3>{{ item.title }}</h3>
+            <p>{{ item.description }}</p>
+          </div>
+        </div>
+      }
+    </div>
+  </div>
+</section>
+
 <!-- Products & Services -->
 <section class="section products" id="products" appSpotlight>
   <div class="products-bg" aria-hidden="true">
@@ -163,9 +202,15 @@
     <div class="module-cloud">
       @for (mod of modules; track mod.slug) {
         <a class="module-tile" [routerLink]="['/modules', mod.slug]" appReveal [style.--i]="$index">
-          <span class="module-tile-num">{{ mod.order.toString().padStart(2, '0') }}</span>
-          <span class="module-tile-icon"><app-icon [iconName]="mod.icon" /></span>
-          <span class="module-tile-title">{{ moduleText(mod.slug)?.navTitle }}</span>
+          <span class="module-tile-glow" aria-hidden="true"></span>
+          <div class="module-tile-head">
+            <span class="module-tile-icon"><app-icon [iconName]="mod.icon" /></span>
+            <span class="module-tile-title">{{ moduleText(mod.slug)?.navTitle }}</span>
+          </div>
+          <div class="module-tile-desc-wrap">
+            <p class="module-tile-desc">{{ moduleText(mod.slug)?.tagline }}</p>
+            <div class="module-tile-desc-popover" role="tooltip">{{ moduleText(mod.slug)?.tagline }}</div>
+          </div>
           <span class="module-tile-arrow"><app-icon [iconName]="i18n.mirrorIcon('arrowRight')" /></span>
         </a>
       }

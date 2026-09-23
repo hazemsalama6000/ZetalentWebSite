@@ -26,6 +26,12 @@ interface FeatureCard {
   description: string;
 }
 
+interface AiCapability {
+  icon: string;
+  title: string;
+  description: string;
+}
+
 interface Client {
   name: string;
   logo: string;
@@ -52,63 +58,61 @@ export class Home {
   protected readonly heroStats = computed(() => this.i18n.list<StatItem>('home.stats'));
   protected readonly audienceCards = computed(() => this.i18n.list<AudienceCard>('home.audience'));
   protected readonly featureCards = computed(() => this.i18n.list<FeatureCard>('home.features'));
+  protected readonly aiCapabilities = computed(() => this.i18n.list<AiCapability>('home.aiCapabilities'));
 
   protected readonly allClients: Client[] = [];
 
   protected moduleText(slug: string) {
-    return this.i18n.raw<{ navTitle: string; badge: string }>(`modules.${slug}`);
+    return this.i18n.raw<{ navTitle: string; badge: string; tagline: string }>(`modules.${slug}`);
   }
 
   protected readonly clientsRowOne: Client[] = [
-    { name: 'Saudi Finance Company', logo: 'clients-images/Picture3.png' },
-    { name: 'Skyband', logo: 'clients-images/Picture4.png' },
-    { name: 'RSM', logo: 'clients-images/Picture5.png' },
-    { name: 'Najm Hajm', logo: 'clients-images/Picture6.png' },
-    { name: 'Al Jammaz', logo: 'clients-images/Picture7.png' },
-    { name: 'Zamil Food Industries', logo: 'clients-images/Picture8.png' },
-    { name: 'Najm Manafith', logo: 'clients-images/Picture9.png' },
-    { name: 'Assila', logo: 'clients-images/Picture10.png' },
-    { name: 'Advanced Piping Solutions', logo: 'clients-images/Picture11.png' },
-    { name: 'Satex', logo: 'clients-images/Picture12.jpg' },
-    { name: 'Hayat National Hospitals', logo: 'clients-images/Picture13.jpg' },
-    { name: 'Raya Financing', logo: 'clients-images/Picture14.png' },
-    { name: 'Derayah', logo: 'clients-images/Picture15.png' },
-    { name: 'Al-Najim Saudi International', logo: 'clients-images/Picture16.jpg' },
-    { name: 'Al Mimar Al Araby', logo: 'clients-images/Picture17.jpg' },
-    { name: 'Taswia', logo: 'clients-images/Picture18.jpg' },
-    { name: 'Almulhim Holding Co.', logo: 'clients-images/Picture19.jpg' },
-    { name: 'AICC', logo: 'clients-images/Picture20.png' },
-    { name: 'Al Jammaz Cloud', logo: 'clients-images/Picture21.png' },
-    { name: 'Al Jammaz Investments', logo: 'clients-images/Picture22.png' },
-    { name: 'Sheraa Air Conditioning & Energy', logo: 'clients-images/Picture23.png' },
-    { name: 'VAD', logo: 'clients-images/Picture24.png' },
-    { name: 'Arabian Trade House', logo: 'clients-images/Picture25.png' },
+    { name: 'Client 01', logo: 'new-clients-images/01.png' },
+    { name: 'Client 02', logo: 'new-clients-images/02.jpg' },
+    { name: 'Client 03', logo: 'new-clients-images/03.jpg' },
+    { name: 'Client 04', logo: 'new-clients-images/04.jpg' },
+    { name: 'Client 05', logo: 'new-clients-images/05.png' },
+    { name: 'Client 06', logo: 'new-clients-images/06.png' },
+    { name: 'Client 07', logo: 'new-clients-images/07.png' },
+    { name: 'Client 08', logo: 'new-clients-images/08.jpg' },
+    { name: 'Client 09', logo: 'new-clients-images/09.png' },
+    { name: 'Client 10', logo: 'new-clients-images/10.png' },
+    { name: 'Client 11', logo: 'new-clients-images/11.png' },
+    { name: 'Client 12', logo: 'new-clients-images/12.png' },
+    { name: 'Client 13', logo: 'new-clients-images/13.jpg' },
+    { name: 'Client 14', logo: 'new-clients-images/14.png' },
+    { name: 'Client 15', logo: 'new-clients-images/15.jpg' },
+    { name: 'Client 16', logo: 'new-clients-images/16.png' },
+    { name: 'Client 17', logo: 'new-clients-images/17.png' },
+    { name: 'Client 18', logo: 'new-clients-images/18.jpg' },
+    { name: 'Client 19', logo: 'new-clients-images/19.jpg' },
+    { name: 'Client 20', logo: 'new-clients-images/20.png' },
+    { name: 'Client 21', logo: 'new-clients-images/21.png' },
+    { name: 'Client 22', logo: 'new-clients-images/22.jpg' },
   ];
 
   protected readonly clientsRowTwo: Client[] = [
-    { name: 'Mazaya', logo: 'clients-images/Picture26.png' },
-    { name: 'Fulbright Egypt', logo: 'clients-images/Picture27.png' },
-    { name: 'SEC Smart Engineering', logo: 'clients-images/Picture28.png' },
-    { name: 'iTouch Stores', logo: 'clients-images/Picture29.png' },
-    { name: 'Keller', logo: 'clients-images/Picture30.png' },
-    { name: 'Saraya', logo: 'clients-images/Picture31.png' },
-    { name: 'Fedex Egypt', logo: 'clients-images/Picture32.png' },
-    { name: 'Thales', logo: 'clients-images/Picture33.png' },
-    { name: 'Jokey', logo: 'clients-images/Picture34.png' },
-    { name: 'Mymsa for Agencies & Trade', logo: 'clients-images/Picture35.jpg' },
-    { name: 'Rasgharib Wind Energy', logo: 'clients-images/Picture36.jpg' },
-    { name: 'Red Sea Wind Energy', logo: 'clients-images/Picture37.png' },
-    { name: 'UGCE Consultants', logo: 'clients-images/Picture38.png' },
-    { name: 'Jenin Contracting', logo: 'clients-images/Picture39.png' },
-    { name: 'Dr. Ahmad Fond', logo: 'clients-images/Picture40.jpg' },
-    { name: 'Prisma Foods', logo: 'clients-images/Picture41.jpg' },
-    { name: 'Future House', logo: 'clients-images/Picture42.png' },
-    { name: 'RGB Realco Group', logo: 'clients-images/Picture43.jpg' },
-    { name: 'Golden Metal Aluminum Systems', logo: 'clients-images/Picture44.jpg' },
-    { name: 'Indorama Ventures', logo: 'clients-images/Picture45.png' },
-    { name: 'Etqan Consultancy', logo: 'clients-images/Picture46.png' },
-    { name: 'G-Group', logo: 'clients-images/Picture47.png' },
-    { name: 'ESG Eslam Elshirby Group', logo: 'clients-images/Picture48.png' },
+    { name: 'Client 23', logo: 'new-clients-images/23.jpg' },
+    { name: 'Client 24', logo: 'new-clients-images/24.jpg' },
+    { name: 'Client 25', logo: 'new-clients-images/25.jpg' },
+    { name: 'Client 26', logo: 'new-clients-images/26.jpg' },
+    { name: 'Client 27', logo: 'new-clients-images/27.jpg' },
+    { name: 'Client 28', logo: 'new-clients-images/28.jpg' },
+    { name: 'Client 29', logo: 'new-clients-images/29.jpg' },
+    { name: 'Client 30', logo: 'new-clients-images/30.jpg' },
+    { name: 'Client 31', logo: 'new-clients-images/31.jpg' },
+    { name: 'Client 32', logo: 'new-clients-images/32.jpg' },
+    { name: 'Client 33', logo: 'new-clients-images/33.jpg' },
+    { name: 'Client 34', logo: 'new-clients-images/34.jpg' },
+    { name: 'Client 35', logo: 'new-clients-images/35.jpg' },
+    { name: 'Client 36', logo: 'new-clients-images/36.jpg' },
+    { name: 'Client 37', logo: 'new-clients-images/37.jpeg' },
+    { name: 'Client 38', logo: 'new-clients-images/38.png' },
+    { name: 'Client 39', logo: 'new-clients-images/39.png' },
+    { name: 'Client 40', logo: 'new-clients-images/40.png' },
+    { name: 'Client 41', logo: 'new-clients-images/41.jpg' },
+    { name: 'Client 42', logo: 'new-clients-images/42.png' },
+    { name: 'Client 43', logo: 'new-clients-images/43.png' },
   ];
 
   protected readonly clientRows: Client[][] = [];

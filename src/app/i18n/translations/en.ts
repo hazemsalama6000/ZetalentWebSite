@@ -11,11 +11,13 @@ export const en = {
     whoWeAre: 'Who We Are',
     manageItAll: 'Manage It All',
     whyZetalents: 'Why zetalents',
+    ai: 'AI',
     products: 'Products',
     clients: 'Clients',
     blog: 'Blog',
     integrations: 'Integrations',
     contact: 'Contact',
+    careers: 'Careers',
     privacyPolicy: 'Privacy Policy',
   },
   footer: {
@@ -116,6 +118,33 @@ export const en = {
         icon: 'handshake',
         title: 'Dedicated Support',
         description: 'A technical support team with deep product expertise standing behind every deployment.',
+      },
+    ],
+    ai: {
+      eyebrow: 'AI, Built In',
+      title: 'Artificial intelligence, woven into every HR workflow',
+      lead: 'zetalents pairs its HCIS with built-in AI, surfacing insights, automating routine work, and giving HR teams and employees a smart assistant across every module — not a bolt-on tool.',
+    },
+    aiCapabilities: [
+      {
+        icon: 'search',
+        title: 'AI Recruitment Screening',
+        description: 'Automatically parses and ranks incoming applications against role requirements, cutting shortlisting time from days to minutes.',
+      },
+      {
+        icon: 'trendingUp',
+        title: 'Predictive People Analytics',
+        description: 'Forecasts attrition risk, absenteeism, and staffing needs from live workforce data, so managers can act before problems grow.',
+      },
+      {
+        icon: 'bot',
+        title: 'Smart HR Assistant',
+        description: 'A conversational assistant that answers policy questions and guides employees through self-service tasks, in Arabic and English.',
+      },
+      {
+        icon: 'shieldCheck',
+        title: 'Anomaly & Compliance Detection',
+        description: 'Flags unusual payroll entries and compliance risks automatically, before they become costly.',
       },
     ],
     products: {

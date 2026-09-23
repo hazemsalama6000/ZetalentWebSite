@@ -207,11 +207,7 @@
             <span class="module-tile-icon"><app-icon [iconName]="mod.icon" /></span>
             <span class="module-tile-title">{{ moduleText(mod.slug)?.navTitle }}</span>
           </div>
-          <div class="module-tile-desc-wrap">
-            <p class="module-tile-desc">{{ moduleText(mod.slug)?.tagline }}</p>
-            <div class="module-tile-desc-popover" role="tooltip">{{ moduleText(mod.slug)?.tagline }}</div>
-          </div>
-          <span class="module-tile-arrow"><app-icon [iconName]="i18n.mirrorIcon('arrowRight')" /></span>
+          <p class="module-tile-desc">{{ moduleText(mod.slug)?.tagline }}</p>
         </a>
       }
     </div>

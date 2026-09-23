@@ -209,7 +209,7 @@ export const en = {
       ],
     },
     'self-service': {
-      navTitle: 'Self Service & Mobile App',
+      navTitle: 'Self Service',
       badge: 'SELF SERVICE',
       heroTitle: 'Empower Every Employee',
       tagline: 'A collaborative cloud managers self-service (MSS) and employee self-service (ESS) solution to track HR operations and progress by keeping managers and employees connected, up-to-date, and informed through cutting edge technology.',

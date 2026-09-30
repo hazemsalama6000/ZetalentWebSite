@@ -8,7 +8,7 @@
       @for (c of currentList(); track c.name) {
         <div class="detail" appReveal [revealDelay]="210" (mouseenter)="pause(true)" (mouseleave)="pause(false)">
           <div class="detail-head">
-            <span class="detail-icon"><app-icon [iconName]="c.icon" /></span>
+            <span class="detail-icon">@if (c.logoImage) {<span class="brand-chip"><img [src]="c.logoImage" alt="" /></span>} @else if (c.logo) {<span class="brand-logo" [style.--logo]="'url(' + c.logo + ')'"></span>} @else {<app-icon [iconName]="c.icon" />}</span>
             <div>
               <span class="live"><span class="pulse"></span>{{ 'integrations.live' | translate }}</span>
               <h2>{{ c.name }}</h2>
@@ -49,7 +49,7 @@
           (click)="select(i)"
           (focus)="select(i)"
         >
-          <span class="node-bubble"><app-icon [iconName]="item.icon" /></span>
+          <span class="node-bubble">@if (item.logoImage) {<span class="brand-chip"><img [src]="item.logoImage" alt="" /></span>} @else if (item.logo) {<span class="brand-logo" [style.--logo]="'url(' + item.logo + ')'"></span>} @else {<app-icon [iconName]="item.icon" />}</span>
           <span class="node-name">{{ item.name }}</span>
         </button>
       }
@@ -70,7 +70,7 @@
           [revealDelay]="i * 70"
           (click)="select(i)"
         >
-          <span class="tile-icon"><app-icon [iconName]="item.icon" /></span>
+          <span class="tile-icon">@if (item.logoImage) {<span class="brand-chip"><img [src]="item.logoImage" alt="" /></span>} @else if (item.logo) {<span class="brand-logo" [style.--logo]="'url(' + item.logo + ')'"></span>} @else {<app-icon [iconName]="item.icon" />}</span>
           <span class="tile-name">{{ item.name }}</span>
           <span class="tile-desc">{{ item.desc }}</span>
           <span class="tile-tags">

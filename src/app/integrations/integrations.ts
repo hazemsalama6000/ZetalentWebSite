@@ -9,6 +9,10 @@ interface IntegrationItem {
   name: string;
   desc: string;
   icon: string;
+  // Brand logo (single-colour SVG); rendered as a mask so it takes the icon colour.
+  logo?: string;
+  // Full-colour raster logo; shown on a white chip.
+  logoImage?: string;
   tags: string[];
 }
 

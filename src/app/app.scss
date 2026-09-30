@@ -282,6 +282,19 @@
   }
 }
 
+.footer-links-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  column-gap: 10px;
+  row-gap: 4px;
+}
+
+.footer-links a.footer-links-email {
+  font-size: 0.78rem;
+  opacity: 0.75;
+}
+
 .footer-links-label {
   font-family: var(--font-mono);
   font-size: 0.7rem;

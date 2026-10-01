@@ -349,9 +349,10 @@ export const en = {
     heading: 'One platform. All your systems. Working in perfect sync.',
     tagline: 'Unlock the power of automation by connecting zetalents with the systems you already use. Save time, reduce errors, and streamline your workflows so you can focus on what matters.',
     items: [
-      { name: 'Oracle HCM', desc: 'Sync employees, organization and payroll data with Oracle HCM Cloud.', icon: 'cloud', tags: ['Employees', 'Payroll', 'Two-way sync'] },
-      { name: 'Microsoft Dynamics 365', desc: 'Connect HR and finance workflows with Dynamics 365.', icon: 'link', tags: ['Finance', 'Workflows', 'Real-time'] },
-      { name: 'NetIQ', desc: 'Manage identities and access through NetIQ integration.', icon: 'shieldCheck', tags: ['Identity', 'Access control', 'SSO'] },
+      { name: 'Oracle HCM', desc: 'Sync employees, organization and payroll data with Oracle HCM Cloud.', icon: 'cloud', logoImage: 'images/integrations/oracle.svg', tags: ['Employees', 'Payroll', 'Two-way sync'] },
+      { name: 'SAP', desc: 'Exchange employee, organization and payroll data with SAP SuccessFactors and S/4HANA.', icon: 'cloud', logoImage: 'images/integrations/sap.svg', tags: ['Employees', 'Payroll', 'Two-way sync'] },
+      { name: 'Microsoft Dynamics 365', desc: 'Connect HR and finance workflows with Dynamics 365.', icon: 'link', logoImage: 'images/integrations/dynamics365.svg', tags: ['Finance', 'Workflows', 'Real-time'] },
+      { name: 'NetIQ', desc: 'Manage identities and access through NetIQ integration.', icon: 'shieldCheck', logoImage: 'images/integrations/netiq.png', tags: ['Identity', 'Access control', 'SSO'] },
       { name: 'Muqeem', desc: 'Automate expatriate residency and iqama services with Muqeem.', icon: 'userCheck', logo: 'images/integrations/muqeem.svg', tags: ['Iqama', 'Residency', 'Automated'] },
       { name: 'Saudi GOSI', desc: 'Keep social insurance data aligned with GOSI automatically.', icon: 'building', logoImage: 'images/integrations/gosi.jpg', tags: ['Insurance', 'Compliance', 'Automated'] },
     ],

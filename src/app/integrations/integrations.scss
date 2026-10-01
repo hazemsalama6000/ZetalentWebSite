@@ -125,8 +125,14 @@ h1 {
     width: 100%;
     height: 100%;
     object-fit: contain;
-    /* The source image has wide white margins; zoom past them. */
-    transform: scale(1.3);
+    /* Most logos are cropped tight; give them breathing room. */
+    padding: 14%;
+
+    /* The GOSI image has wide white margins; zoom past them instead. */
+    &[src$='.jpg'] {
+      padding: 0;
+      transform: scale(1.3);
+    }
   }
 }
 

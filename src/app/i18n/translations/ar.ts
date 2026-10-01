@@ -351,9 +351,10 @@ export const ar: TranslationDict = {
     heading: 'منصة واحدة. كل أنظمتك. تعمل بتناغم تام.',
     tagline: 'استفد من قوة الأتمتة بربط zetalents مع الأنظمة التي تستخدمها بالفعل. وفّر الوقت، وقلّل الأخطاء، وبسّط سير العمل لتركز على ما يهم.',
     items: [
-      { name: 'Oracle HCM', desc: 'مزامنة بيانات الموظفين والهيكل التنظيمي والرواتب مع Oracle HCM Cloud.', icon: 'cloud', tags: ['الموظفون', 'الرواتب', 'مزامنة ثنائية الاتجاه'] },
-      { name: 'Microsoft Dynamics 365', desc: 'ربط سير العمل الخاص بالموارد البشرية والمالية مع Dynamics 365.', icon: 'link', tags: ['المالية', 'سير العمل', 'لحظي'] },
-      { name: 'NetIQ', desc: 'إدارة الهويات والصلاحيات من خلال التكامل مع NetIQ.', icon: 'shieldCheck', tags: ['الهوية', 'التحكم بالوصول', 'تسجيل دخول موحد'] },
+      { name: 'Oracle HCM', desc: 'مزامنة بيانات الموظفين والهيكل التنظيمي والرواتب مع Oracle HCM Cloud.', icon: 'cloud', logoImage: 'images/integrations/oracle.svg', tags: ['الموظفون', 'الرواتب', 'مزامنة ثنائية الاتجاه'] },
+      { name: 'SAP', desc: 'تبادل بيانات الموظفين والهيكل التنظيمي والرواتب مع SAP SuccessFactors و S/4HANA.', icon: 'cloud', logoImage: 'images/integrations/sap.svg', tags: ['الموظفون', 'الرواتب', 'مزامنة ثنائية الاتجاه'] },
+      { name: 'Microsoft Dynamics 365', desc: 'ربط سير العمل الخاص بالموارد البشرية والمالية مع Dynamics 365.', icon: 'link', logoImage: 'images/integrations/dynamics365.svg', tags: ['المالية', 'سير العمل', 'لحظي'] },
+      { name: 'NetIQ', desc: 'إدارة الهويات والصلاحيات من خلال التكامل مع NetIQ.', icon: 'shieldCheck', logoImage: 'images/integrations/netiq.png', tags: ['الهوية', 'التحكم بالوصول', 'تسجيل دخول موحد'] },
       { name: 'مقيم', desc: 'أتمتة خدمات الإقامة والمقيمين الأجانب عبر منصة مقيم.', icon: 'userCheck', logo: 'images/integrations/muqeem.svg', tags: ['الإقامة', 'الإقامات', 'تلقائي'] },
       { name: 'التأمينات الاجتماعية (GOSI)', desc: 'مواءمة بيانات التأمينات الاجتماعية تلقائيًا مع GOSI.', icon: 'building', logoImage: 'images/integrations/gosi.jpg', tags: ['التأمينات', 'الامتثال', 'تلقائي'] },
     ],

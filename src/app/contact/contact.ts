@@ -34,7 +34,7 @@ export class Contact {
       .map((office, i) => ({ ...office, phones: OFFICE_PHONES[i] ?? [] })),
   );
 
-  protected readonly contactEmail = 'info@zetalent.com';
+  protected readonly contactEmail = 'info@zetalentss.com';
 
   protected onSubmit(event: Event, name: string, email: string, phone: string, message: string): void {
     event.preventDefault();
